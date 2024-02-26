@@ -54,7 +54,6 @@ body, .field-container{
   height: 20em;
   justify-content: center;
   align-items: center;
-
 }
 
 
@@ -64,6 +63,7 @@ body, .field-container{
   padding: 0.1em;
   text-align: center;
 }
+
 
 h3 {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
