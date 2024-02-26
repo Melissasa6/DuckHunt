@@ -18,14 +18,14 @@ body, .field-container{
 }
 
 .background{
-    background-image: url(Sources/Images/board1.png) ;
+    background-image: url(Sources/Images/stage2.png) ;
     position: absolute;
     height: 100%;   
     width: 100%;
     background-position: bottom;
     background-repeat: no-repeat;
     background-attachment: fixed;
-    background-size:contain;
+    background-size: 100% 100%;
     z-index: 100;
 }
 
@@ -178,3 +178,22 @@ body, .field-container{
     transform: translate(-50%, -50%);
    
 }
+
+#dogRun{
+    position: absolute;
+    width: 3em;
+    height: 3em;
+    z-index: 150;
+    bottom:5%;
+    left:0%;
+    z-index: 101;
+    background: url('Sources/Images/duckhunt_various_sheet.png');  
+    background-repeat: no-repeat;
+    animation-name: dogRunAnimation 1s steps(8) infinite; 
+    animation-duration: 1s;
+    display: inline-block;
+}
+
+
+    
+
