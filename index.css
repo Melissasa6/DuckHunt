@@ -1,0 +1,37 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+}
+
+body, .container{
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    padding: 0;
+    margin:0;
+    background-color: aqua;
+    position: relative;
+    cursor: none;
+}
+
+.background{
+    background-image: url(Sources/Images/board1.png) ;
+    position: absolute;
+    height: 100%;   
+    width: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size:contain;
+    z-index: 100;
+}
+
+.mouse{
+    position: absolute;
+    width: 4em;
+    height: 4em;
+    z-index: 150;
+    transform: translate(-50%, -50%);
+   
+}
