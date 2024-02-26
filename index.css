@@ -4,7 +4,7 @@
     box-sizing: border-box;
 }
 
-body, .container{
+body, .field-container{
     width: 100vw;
     height: 100vh;
     overflow: hidden;
@@ -13,6 +13,8 @@ body, .container{
     background-color: aqua;
     position: relative;
     cursor: none;
+    display: flex;
+    justify-content: center;
 }
 
 .background{
@@ -26,6 +28,147 @@ body, .container{
     background-size:contain;
     z-index: 100;
 }
+
+
+.main-menu-container, .main-menu{
+    position: fixed;
+    top: 50em;
+    left: 50em;
+    transform: translate(-50%, -50%);
+    background-color: aqua;
+    background-image: url("Sources/Images/board1.png");
+    width: 80vw;
+    background-repeat: no-repeat;
+    background-size: 80% 80%;
+    background-position: contain;
+    height: 80vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40em;
+    z-index: 120;
+}
+
+.main-menu-container.hide-container {
+    display: none;
+  }
+  
+  .main-menu-container.show-container {
+    display: flex;
+  }
+
+#bullet-counter{
+    position: fixed;
+    left: 5em;
+    background-color: black;
+    color: whitesmoke;
+    z-index: 102;
+    bottom: 1.5em;
+    border: 0.2em solid rgb(162, 242, 119);
+    border-radius: 0.6em;
+}
+
+
+#bullet-counter img {
+    width: 5em;
+    height: 3em;
+    border-radius: 3em;
+  }
+
+  .bullet1-cover, .bullet2-cover, .bullet3-cover{
+    position: absolute;
+    top: 0;
+    width: 2em;
+    height: 2.5em;
+    background-color: black;
+    z-index: 101;
+    display: none;
+  }
+
+  .bullet1-cover {
+    right: 4.5em;
+  }
+  
+  .bullet2-cover {
+    right: 2.5em;
+  }
+  
+  .bullet3-cover {
+    right: 5em;
+  }
+
+
+  .ducks-counter {
+    background-color: black;
+    position: fixed;
+    bottom: 1.5em;
+    right: 25em;
+    width: 20em;
+    height: 5em;
+    z-index: 102;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    overflow: hidden;
+    border: 0.2em solid rgb(162, 242, 119);
+    border-radius: 1em;
+  }
+
+  .ducks-counter-inner {
+    font-size: 1em;
+    color:  rgb(162, 242, 119);
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    height: 100%;
+    font-size: 3em;
+    margin-left: 0.3em;
+    margin-right: 0.3em;
+    margin-bottom: 0.1em;
+    margin-top: 0.4em;
+    overflow: hidden;
+  }
+  
+  .little-ducks {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    color: white;
+    overflow: hidden;
+    font-size: 2em;
+  }
+
+  .score-container {
+    background-color: black;
+    position: fixed;
+    bottom: 1.5em;
+    right: 5em;
+    width:10em;
+    height: 4em;
+    border-radius: 1em;
+    z-index: 105;
+    display: flex;
+    flex-direction: row; 
+    justify-content: space-evenly;
+    overflow: hidden;
+    border: 3px solid rgb(162, 242, 119);
+  }
+
+  .score-inner, .score {
+    font-size: 1em;
+    height: 100%;
+    color: whitesmoke;
+    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    justify-content:center;
+    margin-top: 1.2em;
+  }
+
+  .score-inner {
+    color:  rgb(162, 242, 119);
+  }
+
+
 
 .mouse{
     position: absolute;
