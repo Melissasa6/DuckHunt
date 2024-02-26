@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+@font-face {
+  font-family: DuckHuntFont;
+  src: url(fonts/m29.TTF);
+}
+
 body, .field-container{
     width: 100vw;
     height: 100vh;
@@ -17,7 +22,7 @@ body, .field-container{
     justify-content: center;
 }
 
-.background{
+.background, .main-menu-container{
     background-image: url(images/stage2.png) ;
     position: absolute;
     height: 100%;   
@@ -30,33 +35,45 @@ body, .field-container{
 }
 
 
-.main-menu-container, .main-menu{
-    position: fixed;
-    top: 50em;
-    left: 50em;
-    transform: translate(-50%, -50%);
-    background-color: aqua;
-    background-image: url("images/board1.png");
-    width: 80vw;
-    background-repeat: no-repeat;
-    background-size: 80% 80%;
-    background-position: contain;
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40em;
-    z-index: 120;
+.main-menu-container{
+  display: flex;
+  justify-content: center;
 }
 
-.main-menu-container.hide-container {
-    display: none;
-  }
-  
-  .main-menu-container.show-container {
-    display: flex;
-  }
+.main-menu {
+  border: 0.4em solid yellow;
+  border-radius: 0.6em;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+
+#play-button {
+  width: 26em;
+  height: 20em;
+  justify-content: center;
+  align-items: center;
+
+}
+
+
+.title {
+  font-family: duckHuntFont;
+  font-size: 6em;
+  padding: 0.1em;
+  text-align: center;
+}
+
+h3 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
+  position: fixed;
+  top: 92%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
 
 #bullet-counter{
     position: fixed;
