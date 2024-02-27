@@ -22,7 +22,7 @@ body, .field-container{
     justify-content: center;
 }
 
-.background, .main-menu-container{
+.background, .main-menu-container, .game-over-container{
     background-image: url(images/stage2.png) ;
     position: absolute;
     height: 100%;   
@@ -35,13 +35,13 @@ body, .field-container{
 }
 
 
-.main-menu-container{
+.main-menu-container, .game-over-container{
   margin-top: 1em;
   display: flex;
   justify-content: center;
 }
 
-.wrapper {
+.wrapper, .game-over-wrapper {
   width: 30em;
   height: 30em;
   border: 0.4em solid yellow;
@@ -58,25 +58,61 @@ body, .field-container{
   width: 26em;
   height: 20em;
   align-self: center;
+}
+
+#restart-button {
+  align-self: center;
+  width: 20em;
+  height: 10em;
+  margin-top: 0.6em;
+}
+
+.game-over-container p {
+  color: yellow;
+  font-weight: bold;
+  margin-left: 2em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 3em;
 
 }
 
+.game-over-container #score {
+  font-weight: bold;
+  align-items: center;
+  font-size: 1em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
 
-.title {
+
+.title, .title-game-over {
   font-family: duckHuntFont;
   font-size: 6em;
   padding: 0.1em;
   text-align: center;
 }
 
+.title-game-over {
+  color: orangered
+}
+
 
 h3 {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   position: fixed;
-  top: 35em;
-  left: 41em;
+  top: 39em;
+  left: 45em;
   transform: translateX(-50%);
 }
+
+#sarting-timer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 120;
+}
+
+
 
 
 #bullet-counter{
@@ -157,6 +193,7 @@ h3 {
     color: white;
     overflow: hidden;
     font-size: 2em;
+    margin-bottom: 0.4em;
   }
 
   .score-container {
