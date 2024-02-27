@@ -440,16 +440,20 @@ h3 {
     transform: scale(4) translateX(80px) translateY(0);       
   }
 
-  25% {
-    transform: scale(4) translateX(100px) translateY(-35px);       
-  }
   
-  75%{
-    transform:scale(4) translateX(110px) translateY(-20px);
+  65%{
+    transform:scale(4) translateX(110px) translateY(-40px);
+    z-index: 200;
+  }
+
+  70%{
+    transform:scale(4) translateX(110px) translateY(-40px);
+    z-index: 0;
   }
 
   100%{
-    transform:scale(4) translateX(110px) translateY(-15px);
+    transform:scale(4) translateX(110px) translateY(10px);
+    z-index: 0;
     display: none;
   }
 }
@@ -485,10 +489,132 @@ h3 {
   width: 53px;
   height: 50px;
 }
-100%{
- 
+100% {
   background-position: -135px -67px;
   width: 53px;
   height: 50px;
+}
+}
+
+#dogLaughContainer{
+  position:absolute;
+  z-index: 90;
+  bottom:15%;
+  left:50%;
+  width: 29px;
+  height: 39px;
+  transform: translate(-50%);
+  background: no-repeat;
+  background: url("/images/duckhunt_various_sheet.png");	 
+  transform: scale(4);
+ 
+}
+
+#dogLaughContainer.animate {
+  animation: dogLaughAnimation 3s steps(1) forwards, dogLaughMoveAnimation 2s  1 linear forwards;
+}
+
+@keyframes dogLaughAnimation{
+  0% {
+    background-position: -197px -63px;
+    width: 29px;
+    height: 39px;
+  }
+  
+  25%{
+    background-position: -257px -63px;
+    width: 29px;
+    height: 39px;
+  }
+  50%{
+    background-position: -197px -63px;
+    width: 29px;
+    height: 40px;
+    
+  }
+
+  75%{
+    background-position: -257px -63px;
+    width: 29px;
+    height: 39px;
+  }
+  
+  100%{
+    background-position: -197px -63px;
+    width: 29px;
+    height: 40px;
+
+  }
+}
+
+@keyframes dogLaughMoveAnimation{
+  0% {
+    transform: scale(4) translateY(0);       
+}
+25% {
+  transform: scale(4) translateY(-38px);       
+}
+50%{
+  transform: scale(4) translateY(-38px);  
+}
+
+75%{
+  transform: scale(4) translateY(-38px);  
+}
+100%{
+  transform:scale(4) translateY(0px);
+}
+}
+
+
+#dogGotDuckContainer{
+  position:absolute;
+  z-index: 90;
+  bottom:15%;
+  left:50%;
+  width: 43px;
+  height: 39px;
+  transform: translate(-50%);
+  background: no-repeat;
+  background: url("/images/duckhunt_various_sheet.png");	 
+  transform: scale(4);
+ 
+}
+
+#dogGotDuckContainer.animate1 {
+  animation: dogGotDuckAnimation 3s steps(1) forwards, dogGotDuckMoveAnimation 2s  1 linear forwards;
+}
+
+@keyframes dogGotDuckAnimation{
+  0% {
+    background-position: -332px -3px;
+    width: 43px;
+    height: 39px;
+  }
+  
+  100%{
+    background-position: -332px -3px;
+    width: 43px;
+    height: 39px;
+
+  }
+}
+
+@keyframes dogGotDuckMoveAnimation{
+  0% {
+    transform: scale(4) translateY(0);       
+}
+25% {
+  transform: scale(4) translateY(-38px);       
+}
+50%{
+  transform: scale(4) translateY(-38px);  
+}
+
+75%{
+  transform: scale(4) translateY(-38px);  
+}
+100%{
+  transform:scale(4) translateY(0px);
 }
 }
