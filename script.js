@@ -53,29 +53,44 @@ function displayStartingTimer(seconds){
     timeElement.style.fontFamily ="DuckHuntFont";
     timeElement.style.fontSize = "400%";
     gameTimerContainer.appendChild(timeElement);
+
+
+    const updateTimer = () => {
+        const currentTime = Date.now();
+        const timeLeft = Math.ceil((gameStartingEndTimer - currentTime) / 1000);
+
+        if (timeLeft > 0) {
+            timeElement.textContent = `${timeLeft}`;
+            setTimeout(updateTimer, 1000);
+        } else {
+            timeElement.textContent = 'QUACK TIME!';
+            setTimeout(() => timeElement.remove(), 1000);
+        }
+    };
+    updateTimer();
 }
 
 
 
-// document.addEventListener('click', ()=> {
-//     if(isEnableShooting){
-//         bulletCounter--;
-//         bullet.play();
-//     } if (bulletCounter ===2) {
-//         bullet1Cover.style.display = "inline";
-//     } else if ( bulletCounter ===1) {
-//         bullet1Cover.style.display, bullet2Cover.style.display = "inline";
-//     }else if ( bulletCounter ===1) {
-//         bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
-//     }
-//     });
+document.addEventListener('click', ()=> {
+     if(isEnableShooting){
+         bulletCounter--;
+         bullet.play();
+     } if (bulletCounter ===2) {
+         bullet1Cover.style.display = "inline";
+     } else if ( bulletCounter ===1) {
+         bullet1Cover.style.display, bullet2Cover.style.display = "inline";
+     }else if ( bulletCounter ===1) {
+         bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
+     }
+     });
 
 
 
 
 function play() {
     stopIntroAudio();
-    //startGame();
+    startGame();
 }
 
 
