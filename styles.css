@@ -4,6 +4,11 @@
     box-sizing: border-box;
 }
 
+@font-face {
+  font-family: DuckHuntFont;
+  src: url(fonts/m29.TTF);
+}
+
 body, .field-container{
     width: 100vw;
     height: 100vh;
@@ -12,14 +17,15 @@ body, .field-container{
     margin:0;
     background-color: aqua;
     position: relative;
-    cursor: none;
+    cursor: none ;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .background{
     background-image: url(images/stage2.png) ;
-    position: absolute;
+    position: relative;
     height: 100%;   
     width: 100%;
     background-position: bottom;
@@ -29,34 +35,106 @@ body, .field-container{
     z-index: 100;
 }
 
-
-.main-menu-container, .main-menu{
-    position: fixed;
-    top: 50em;
-    left: 50em;
-    transform: translate(-50%, -50%);
-    background-color: aqua;
-    background-image: url("images/board1.png");
-    width: 80vw;
-    background-repeat: no-repeat;
-    background-size: 80% 80%;
-    background-position: contain;
-    height: 80vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 40em;
-    z-index: 120;
+.main-menu-container, .game-over-container {
+  background-image: url(images/stage2.png) ;
+  position: relative;
+  height: 100%;   
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 100;
+    margin-top: 1em;
+  display: flex;
+  flex-direction: column;
 }
 
-.main-menu-container.hide-container {
-    display: none;
-  }
-  
-  .main-menu-container.show-container {
-    display: flex;
-  }
+
+.wrapper, .game-over-wrapper {
+  width: 28%;
+  height: 60%;
+  border: 0.4em solid yellow;
+  border-radius: 0.6em;
+  position: relative;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  align-self: center;
+  display: flex;
+  margin-top: 8%;
+  flex-direction: column;
+}
+
+#play-button {
+  width: 80%;
+  height: 60%;
+  align-self: center;
+  transition: filter 0.3s ease-in-out;
+  z-index: 250;
+}
+
+#play-button:hover {
+  filter: grayscale(0%);
+}
+
+
+#restart-button {
+  align-self: center;
+  width: 80%;
+  height: 30%;
+  margin-top: 4%;
+}
+
+.game-over-container p {
+  color: yellow;
+  font-weight: bold;
+  margin-left: 1.5em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-size: 4em;
+
+}
+
+.game-over-container #score {
+  font-weight: bold;
+  align-items: center;
+  font-size: 1em;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+
+.title {
+  font-family: duckHuntFont;
+  font-size: 700%;
+  padding: 0.1em;
+  text-align: center;
+}
+
+.title-game-over {
+  font-family: duckHuntFont;
+  font-size: 600%;
+  padding: 0.1em;
+  text-align: center;
+
+}
+
+.title-game-over {
+  color: orangered
+}
+
+
+h3 {
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  text-align: center;
+  margin-top: 8%;
+
+}
+
+#starting-timer {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 120;
+}
+
 
 #bullet-counter{
     position: fixed;
@@ -117,15 +195,14 @@ body, .field-container{
   }
 
   .ducks-counter-inner {
-    font-size: 1em;
     color:  rgb(162, 242, 119);
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: duckHuntFont;
+    font-size: 2em;
     height: 100%;
-    font-size: 3em;
     margin-left: 0.3em;
     margin-right: 0.3em;
-    margin-bottom: 0.1em;
-    margin-top: 0.4em;
+    margin-bottom: 0.3em;
+    margin-top: 1.4em;
     overflow: hidden;
   }
   
@@ -137,6 +214,7 @@ body, .field-container{
     color: white;
     overflow: hidden;
     font-size: 2em;
+    margin-bottom: 0.4em;
   }
 
   .score-container {
@@ -156,12 +234,12 @@ body, .field-container{
   }
 
   .score-inner, .score {
-    font-size: 1em;
+    font-size: 0.7em;
     height: 100%;
     color: whitesmoke;
-    font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family:duckHuntFont;
     justify-content:center;
-    margin-top: 1.2em;
+    margin-top: 2em;
   }
 
   .score-inner {
@@ -177,7 +255,7 @@ body, .field-container{
     z-index: 150;
     transform: translate(-50%, -50%);
    
-}
+} 
 
 .dogRunContainer{
     position: absolute;
