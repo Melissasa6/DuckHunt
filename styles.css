@@ -17,14 +17,15 @@ body, .field-container{
     margin:0;
     background-color: aqua;
     position: relative;
-    cursor: none;
+    cursor: none ;
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
-.background, .main-menu-container, .game-over-container{
+.background{
     background-image: url(images/stage2.png) ;
-    position: absolute;
+    position: relative;
     height: 100%;   
     width: 100%;
     background-position: bottom;
@@ -34,45 +35,60 @@ body, .field-container{
     z-index: 100;
 }
 
-
-.main-menu-container, .game-over-container{
-  margin-top: 1em;
-  display: flex;
-  justify-content: center;
-}
-
-.wrapper, .game-over-wrapper {
-  width: 30em;
-  height: 30em;
-  border: 0.4em solid yellow;
-  border-radius: 0.6em;
-  background: transparent;
-  backdrop-filter: blur(10px);
+.main-menu-container, .game-over-container {
+  background-image: url(images/stage2.png) ;
+  position: relative;
+  height: 100%;   
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  z-index: 100;
+    margin-top: 1em;
   display: flex;
   flex-direction: column;
-  bottom: 50em;
-  margin-top: 5em;
+}
+
+
+.wrapper, .game-over-wrapper {
+  width: 28%;
+  height: 60%;
+  border: 0.4em solid yellow;
+  border-radius: 0.6em;
+  position: relative;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  align-self: center;
+  display: flex;
+  margin-top: 8%;
+  flex-direction: column;
 }
 
 #play-button {
-  width: 26em;
-  height: 20em;
+  width: 80%;
+  height: 60%;
   align-self: center;
+  transition: filter 0.3s ease-in-out;
+  z-index: 250;
 }
+
+#play-button:hover {
+  filter: grayscale(0%);
+}
+
 
 #restart-button {
   align-self: center;
-  width: 20em;
-  height: 10em;
-  margin-top: 0.6em;
+  width: 80%;
+  height: 30%;
+  margin-top: 4%;
 }
 
 .game-over-container p {
   color: yellow;
   font-weight: bold;
-  margin-left: 2em;
+  margin-left: 1.5em;
   font-family: Georgia, 'Times New Roman', Times, serif;
-  font-size: 3em;
+  font-size: 4em;
 
 }
 
@@ -84,11 +100,19 @@ body, .field-container{
 }
 
 
-.title, .title-game-over {
+.title {
   font-family: duckHuntFont;
-  font-size: 6em;
+  font-size: 700%;
   padding: 0.1em;
   text-align: center;
+}
+
+.title-game-over {
+  font-family: duckHuntFont;
+  font-size: 600%;
+  padding: 0.1em;
+  text-align: center;
+
 }
 
 .title-game-over {
@@ -98,21 +122,18 @@ body, .field-container{
 
 h3 {
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  position: fixed;
-  top: 39em;
-  left: 45em;
-  transform: translateX(-50%);
+  text-align: center;
+  margin-top: 8%;
+
 }
 
-#sarting-timer {
+#starting-timer {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 120;
 }
-
-
 
 
 #bullet-counter{
@@ -234,7 +255,7 @@ h3 {
     z-index: 150;
     transform: translate(-50%, -50%);
    
-}
+} 
 
 #dogRun{
     position: absolute;
