@@ -27,16 +27,22 @@ mouse.style.top = move.pageY + "px";
 
 })
 
+function dogMove(){
+    let dogMove= document.getElementById("dogRun");
+    dogMove.classList.add("dogRunContainer");
+    setTimeout(() => {dogMove.classList.remove("dogRunContainer")},6000);
+}
+
 function dogLaugh(){
     let dogLaugh= document.getElementById("dogLaughContainer");
-    dogLaugh.classList.add("animate");
-    setTimeout(() => {dogLaugh.classList.remove("animate")}, 3000);
+    dogLaugh.classList.add("dogLaughAnimate");
+    setTimeout(() => {dogLaugh.classList.remove("dogLaughAnimate")}, 3000);
 }
 
 function dogGotDuck(){
     let dogGotDuck= document.getElementById("dogGotDuckContainer");
-    dogGotDuck.classList.add("animate1");
-    setTimeout(() => {dogGotDuck.classList.remove("animate1")}, 3000);
+    dogGotDuck.classList.add("dogGotDuckAnimate");
+    setTimeout(() => {dogGotDuck.classList.remove("dogGotDuckAnimate")}, 3000);
 }
 
 
