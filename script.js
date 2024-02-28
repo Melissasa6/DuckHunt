@@ -43,7 +43,7 @@ function dogLaugh(){
     const laugh = new Audio("audio/laugh.wav");
     dogLaugh.classList.add("dogLaughAnimate");
     setTimeout(() => {dogLaugh.classList.remove("dogLaughAnimate")}, 3000);
-
+}
 function dogGotDuck(){
     let dogGotDuck= document.getElementById("dogGotDuckContainer");
     dogGotDuck.classList.add("dogGotDuckAnimate");
