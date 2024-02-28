@@ -1,25 +1,49 @@
+    let mouse = document.querySelector('.mouse');
+    
+    const mainFieldContainer = document.getElementById("main-field-container");
+    
+    let dog= document.getElementById("dog");
+    let ducks = [];
 
-let mouse = document.querySelector('.mouse');
-let dog= document.getElementById("dog");
 
-const mainFieldContainer = document.getElementById("main-field-container");
-const bodyContainer = document.body;
+    const bullet1Cover = document.querySelector(".bullet1-cover");
+    const bullet2Cover = document.querySelector(".bullet2-cover");
+    const bullet3Cover = document.querySelector(".bullet3-cover");
 
-const bullet1Cover = document.querySelector(".bullet1-cover");
-const bullet2Cover = document.querySelector(".bullet2-cover");
-const bullet3Cover = document.querySelector(".bullet3-cover");
+    const bullet = new Audio("audio/gun-shot.mp3");
+    
+    let score = 0; 
+    let bulletCounter = 3;
+    let isGameOver = false;
+    let maxFailedDucksToGameOver = 3;
+    let failedDucks = 0;
+    let hitDucks = 0;
 
-const bullet = new Audio("audio/gun-shot.mp3");
+    window.addEventListener("load", () => {    
+    startGame();
+    });    
 
-let maxFailedDucksToGameOver = 3;
-let failedDucks = 0;
-let bulletCounter = 3;
-let hitDucks = 0;
+   
 
-let isEnableShooting = false;
-let isGameOver = false;
+function startGame() {
+    displayStartingTimer(3);
+    showBullets();
+    dogMove();
+}
 
-let score=0;
+
+// SHOOT 
+
+document.addEventListener('click', ()=> {
+    bullet.play();
+if (bulletCounter ===2) {
+    bullet1Cover.style.display = "inline";
+} else if ( bulletCounter ===1) {
+    bullet1Cover.style.display, bullet2Cover.style.display = "inline";
+}else if ( bulletCounter ===0) {
+    bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
+}
+});
 
 
 // MOUSE
@@ -44,6 +68,7 @@ function dogLaugh(){
     dogLaugh.classList.add("dogLaughAnimate");
     setTimeout(() => {dogLaugh.classList.remove("dogLaughAnimate")}, 3000);
 }
+
 function dogGotDuck(){
     let dogGotDuck= document.getElementById("dogGotDuckContainer");
     dogGotDuck.classList.add("dogGotDuckAnimate");
@@ -85,39 +110,18 @@ function displayStartingTimer(seconds){
 
 
 document.addEventListener('click', ()=> {
-     if(isEnableShooting){
-         bulletCounter--;
          bullet.play();
-     } if (bulletCounter ===2) {
+     if (bulletCounter ===2) {
          bullet1Cover.style.display = "inline";
      } else if ( bulletCounter ===1) {
          bullet1Cover.style.display, bullet2Cover.style.display = "inline";
-     }else if ( bulletCounter ===1) {
+     }else if ( bulletCounter ===0) {
          bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
      }
      });
 
 
 
-
-function play() {
-    stopIntroAndGameOverAudio();
-    startGame();
-}
-
-
-function startGame() {
-    displayStartingTimer(3);
-    showBullets();
-
-}
-
-
-function stopIntroAndGameOverAudio() {
-    const introAndGameOverAudio = document.getElementsByClassName('audio');
-    introAndGameOverAudio.pause();
-    introAndGameOverAudio.currentTime = 0;
-}
 
 
 function refreshScore(){
@@ -150,16 +154,15 @@ function displayGameOver(score) {
     }
 }
 
-
 function replay () {
     hitDuckesDisplay();
     startGame();
     stopIntroAndGameOverAudio()
-
 }
 
 
 
+// DUCKS
 
 function hitDuckesDisplay() {
     let ducks = Array.from(document.querySelector(".little-ducks").children);
@@ -180,7 +183,5 @@ function hitDuckesDisplay() {
         break;
     } 
 }
-
-
 
 

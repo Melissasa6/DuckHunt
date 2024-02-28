@@ -69,6 +69,7 @@ body, .field-container{
   width: 80%;
   height: 60%;
   align-self: center;
+  left: %;
   transition: filter 0.3s ease-in-out;
   z-index: 250;
 }
@@ -144,7 +145,7 @@ h3 {
     left: 5em;
     background-color: black;
     color: whitesmoke;
-    z-index: 102;
+    z-index: 150;
     bottom: 1.5em;
     border: 0.2em solid rgb(162, 242, 119);
     border-radius: 0.6em;
@@ -160,23 +161,23 @@ h3 {
   .bullet1-cover, .bullet2-cover, .bullet3-cover{
     position: absolute;
     top: 0;
-    width: 2em;
-    height: 2.5em;
+    width: 1.5em;
+    height: 1.8em;
     background-color: black;
-    z-index: 101;
+    z-index: 200;
     display: none;
   }
 
   .bullet1-cover {
-    right: 4.5em;
+    right: 0.2em;
   }
   
   .bullet2-cover {
-    right: 2.5em;
+    right: 2em;
   }
   
   .bullet3-cover {
-    right: 5em;
+    right: 3em;
   }
 
 
