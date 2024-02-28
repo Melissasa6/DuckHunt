@@ -1,7 +1,4 @@
-let mouse = document.querySelector('.mouse');
-
-window.addEventListener("load", () => {
-
+    let mouse = document.querySelector('.mouse');
     
     const mainFieldContainer = document.getElementById("main-field-container");
     
@@ -22,9 +19,9 @@ window.addEventListener("load", () => {
     let failedDucks = 0;
     let hitDucks = 0;
 
-    
+    window.addEventListener("load", () => {    
     startGame();
-
+    });    
 
    
 
@@ -187,4 +184,4 @@ function hitDuckesDisplay() {
     } 
 }
 
-})
+
