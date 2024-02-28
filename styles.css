@@ -2,12 +2,15 @@
     margin:0;
     padding:0;
     box-sizing: border-box;
+    cursor: none;
+
 }
 
 @font-face {
   font-family: DuckHuntFont;
   src: url(fonts/m29.TTF);
 }
+
 
 body, .field-container{
     width: 100vw;
@@ -17,7 +20,6 @@ body, .field-container{
     margin:0;
     background-color: aqua;
     position: relative;
-    cursor: none ;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -255,6 +257,7 @@ h3 {
     height: 4em;
     z-index: 150;
     transform: translate(-50%, -50%);
+    pointer-events: none;
    
 } 
 
