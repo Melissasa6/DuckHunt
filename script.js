@@ -5,7 +5,6 @@
     let dog= document.getElementById("dog");
     let ducks = [];
 
-
     const bullet1Cover = document.querySelector(".bullet1-cover");
     const bullet2Cover = document.querySelector(".bullet2-cover");
     const bullet3Cover = document.querySelector(".bullet3-cover");
@@ -17,9 +16,10 @@
     let isGameOver = false;
     let maxFailedDucksToGameOver = 3;
     let failedDucks = 0;
-    let hitDucks = 0;
+    let hitDucks = 4;
 
     window.addEventListener("load", () => {    
+        
     startGame();
     });    
 
@@ -36,14 +36,19 @@ function startGame() {
 
 document.addEventListener('click', ()=> {
     bullet.play();
+    bulletCounter--;
 if (bulletCounter ===2) {
     bullet1Cover.style.display = "inline";
 } else if ( bulletCounter ===1) {
     bullet1Cover.style.display, bullet2Cover.style.display = "inline";
 }else if ( bulletCounter ===0) {
     bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
+}else if( bulletCounter === 0) {
+    displayGameOver();
 }
 });
+
+
 
 
 // MOUSE
@@ -54,17 +59,27 @@ mouse.style.top = move.pageY + "px";
 
 })
 
+
+// DOG
+
 function dogMove(){
     let dogMove= document.getElementById("dogRun");
     dogMove.classList.add("dogRunContainer");
-    setTimeout(() => {dogMove.classList.remove("dogRunContainer")},6000);
+    setTimeout(() => {
+        dogMove.classList.remove("dogRunContainer")},6000);
+    setTimeout(() => {
+        const sniff = new Audio("audio/sniff.mp3");
+        sniff.play();
+    }, 2000);
 }
+
 
 function dogLaugh(){
     let dogLaugh= document.getElementById("dogLaughContainer");
     dogLaugh.classList.add("animate");
     setTimeout(() => {dogLaugh.classList.remove("animate")}, 3000);
     const laugh = new Audio("audio/laugh.wav");
+    laugh.play();
     dogLaugh.classList.add("dogLaughAnimate");
     setTimeout(() => {dogLaugh.classList.remove("dogLaughAnimate")}, 3000);
 }
@@ -76,7 +91,7 @@ function dogGotDuck(){
 }
 
 
-//STARTING TIMER
+// STARTING TIMER
 let gameStartingEndTimer;
 
 function displayStartingTimer(seconds){
@@ -109,21 +124,6 @@ function displayStartingTimer(seconds){
 
 
 
-document.addEventListener('click', ()=> {
-         bullet.play();
-     if (bulletCounter ===2) {
-         bullet1Cover.style.display = "inline";
-     } else if ( bulletCounter ===1) {
-         bullet1Cover.style.display, bullet2Cover.style.display = "inline";
-     }else if ( bulletCounter ===0) {
-         bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
-     }
-     });
-
-
-
-
-
 function refreshScore(){
     let score = document.querySelector(".score");
     score.innerHTML = `${totalDucksKilled * 100}`;
@@ -139,7 +139,7 @@ function showBullets() {
 
 // GAME OVER
 
-const GameOverDiv = document.getElementById("game-over-container");
+const GameOver = document.getElementById("game-over-wrapper");
 const restartButton = document.getElementById("restart-button");
 
 
@@ -147,17 +147,13 @@ function displayGameOver(score) {
    isGameOver = true;
     const scoreElement = document.getElementById("score");
     scoreElement.innerHTML = score;
-    GameOverDiv.style.display = "flex";
-
-    if(isGameOver = true) {
-        window.location.href= 'gameOver.html';
-    }
+    GameOver.style.display = "flex";
 }
+
 
 function replay () {
     hitDuckesDisplay();
     startGame();
-    stopIntroAndGameOverAudio()
 }
 
 
@@ -167,19 +163,19 @@ function replay () {
 function hitDuckesDisplay() {
     let ducks = Array.from(document.querySelector(".little-ducks").children);
     switch(hitDucks) {
-        case 5: ducks[4].style.color = "red"; ducks[3].style.color = "red"; ducks[2].style.color = "red"; ducks[1].style.color = "red"; ducks[0].style.color = "red";
+        case 5: ducks[4].style.color = "yellow"; ducks[3].style.color = "yellow"; ducks[2].style.color = "yellow"; ducks[1].style.color = "yellow"; ducks[0].style.color = "yellow";
         break;
-        case 4: ducks[3].style.color = "red"; ducks[2].style.color = "red"; ducks[1].style.color = "red"; ducks[0].style.color = "red";
+        case 4: ducks[3].style.color = "yellow"; ducks[2].style.color = "yellow"; ducks[1].style.color = "yellow"; ducks[0].style.color = "yellow";
         break;
-        case 3: ducks[2].style.color = "red"; ducks[1].style.color = "red"; ducks[0].style.color = "red";
+        case 3: ducks[2].style.color = "yellow"; ducks[1].style.color = "yellow"; ducks[0].style.color = "yellow";
         break;
-        case 2: ducks[1].style.color = "red"; ducks[0].style.color = "red";
+        case 2: ducks[1].style.color = "yellow"; ducks[0].style.color = "yellow";
         break; 
-        case 1: ducks[0].style.color = "red";
+        case 1: ducks[0].style.color = "yellow";
         break;
         case 0: ducks.forEach(duck => {duck.style.color = "white";});
         break;
-        default: ducks.forEach(duck => {duck.style.color = "red";});
+        default: ducks.forEach(duck => {duck.style.color = "yellow";});
         break;
     } 
 }
