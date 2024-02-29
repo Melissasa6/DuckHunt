@@ -43,8 +43,7 @@ if (bulletCounter ===2) {
     bullet1Cover.style.display, bullet2Cover.style.display = "inline";
 }else if ( bulletCounter ===0) {
     bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
-}else if( bulletCounter === 0) {
-    displayGameOver();
+    displayGameOver(score);
 }
 });
 
