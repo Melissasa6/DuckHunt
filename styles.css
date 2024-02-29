@@ -39,7 +39,7 @@ body, .field-container{
     pointer-events: none;
 }
 
-.main-menu-container, .game-over-container {
+.main-menu-container {
   background-image: url(images/stage2.png) ;
   position: relative;
   height: 100%;   
@@ -53,48 +53,66 @@ body, .field-container{
 }
 
 
-.wrapper, .game-over-wrapper {
-  width: 28%;
-  height: 60%;
+.wrapper {
+  width: 32%;
+  height: 65%;
   border: 0.4em solid yellow;
   border-radius: 0.6em;
-  position: relative;
+  position: fixed;
   background: transparent;
   backdrop-filter: blur(10px);
   align-self: center;
   display: flex;
   margin-top: 8%;
   flex-direction: column;
+  z-index: 140;
+}
+
+.title {
+  font-family: duckHuntFont;
+  font-size: 700%;
+  padding: 0.1em;
+  text-align: center;
 }
 
 #play-button {
   width: 80%;
   height: 60%;
   align-self: center;
+  margin-left: 10%;
   transition: filter 0.3s ease-in-out;
   z-index: 250;
 }
 
-#play-button:hover {
-  filter: grayscale(0%);
+
+.game-over-wrapper {
+  display: none;
+  width: 60%;
+  height: 65%;
+  flex-direction: column;
+  position: fixed;
+  z-index: 145;
+  align-self: center; 
+  align-items: center;
 }
 
 
 #restart-button {
   align-self: center;
-  width: 80%;
-  height: 30%;
-  margin-top: 4%;
+  width: 50%;
+  height: 60%;
+  margin-left: 12em;
+  margin-top: 6em;
+
 }
 
-.game-over-container p {
+.game-over-wrapper p {
   color: yellow;
   font-weight: bold;
-  margin-left: 1.5em;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 4em;
-
 }
+
 
 .game-over-container #score {
   font-weight: bold;
@@ -104,32 +122,14 @@ body, .field-container{
 }
 
 
-.title {
+.title-game-over {
   font-family: duckHuntFont;
   font-size: 700%;
   padding: 0.1em;
   text-align: center;
-}
-
-.title-game-over {
-  font-family: duckHuntFont;
-  font-size: 600%;
-  padding: 0.1em;
-  text-align: center;
-
-}
-
-.title-game-over {
   color: orangered
 }
 
-
-h3 {
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-  text-align: center;
-  margin-top: 8%;
-
-}
 
 #starting-timer {
   position: absolute;
