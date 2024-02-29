@@ -69,7 +69,6 @@ body, .field-container{
   width: 80%;
   height: 60%;
   align-self: center;
-  left: %;
   transition: filter 0.3s ease-in-out;
   z-index: 250;
 }
