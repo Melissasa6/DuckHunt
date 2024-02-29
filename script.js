@@ -50,7 +50,7 @@ if (bulletCounter ===2) {
 }else if ( bulletCounter ===0) {
     bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
     disableShooting();
-    displayGameOver();
+    displayGameOver(score);
 }
 });
 
