@@ -23,7 +23,8 @@ body, .field-container{
     display: flex;
     justify-content: center;
     align-items: center;
-}
+    cursor: none;
+    }
 
 .background{
     background-image: url(images/stage2.png) ;
@@ -35,6 +36,7 @@ body, .field-container{
     background-attachment: fixed;
     background-size: 100% 100%;
     z-index: 100;
+    pointer-events: none;
 }
 
 .main-menu-container, .game-over-container {
@@ -69,7 +71,6 @@ body, .field-container{
   width: 80%;
   height: 60%;
   align-self: center;
-  left: %;
   transition: filter 0.3s ease-in-out;
   z-index: 250;
 }
@@ -276,7 +277,7 @@ h3 {
   left: 5%;
   transform: scale(3);
    animation: 
-          flyMove 5s linear infinite, 
+          flyMove 10s linear infinite, 
           rightFlyDuck 0.25s steps(1) infinite;
   animation-direction: normal;
 

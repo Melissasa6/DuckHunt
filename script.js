@@ -1,9 +1,11 @@
     let mouse = document.querySelector('.mouse');
-    
+    let duck = document.querySelector('.duck');
+
     const mainFieldContainer = document.getElementById("main-field-container");
     
     let dog= document.getElementById("dog");
     let ducks = [];
+    
 
 
     const bullet1Cover = document.querySelector(".bullet1-cover");
@@ -13,36 +15,65 @@
     const bullet = new Audio("audio/gun-shot.mp3");
     
     let score = 0; 
-    let bulletCounter = 3;
+    let bulletCounter = 103;
     let isGameOver = false;
     let maxFailedDucksToGameOver = 3;
     let failedDucks = 0;
     let hitDucks = 0;
+    let isEnableShooting = false;
 
-    window.addEventListener("load", () => {    
+
+
+    window.addEventListener("load", () => {  
     startGame();
     });    
 
    
 
 function startGame() {
-    displayStartingTimer(3);
-    showBullets();
+    console.log("Starting game...");
+    disableShooting();    
     dogMove();
+    setTimeout(() => {displayStartingTimer(3);}, 6000);
+    showBullets();
+    
 }
 
 
 // SHOOT 
 
 document.addEventListener('click', ()=> {
+    if(isEnableShooting === false){
+        return;
+    }
     bullet.play();
+    bulletCounter--;
 if (bulletCounter ===2) {
     bullet1Cover.style.display = "inline";
 } else if ( bulletCounter ===1) {
     bullet1Cover.style.display, bullet2Cover.style.display = "inline";
 }else if ( bulletCounter ===0) {
     bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
+    disableShooting();
+    
 }
+});
+
+function enableShooting() {
+    isEnableShooting = true;
+    document.getElementById("mouse").hidden = false;
+}
+
+function disableShooting() {
+    isEnableShooting = false;
+    document.getElementById("mouse").hidden = true;
+    
+}
+
+duck?.addEventListener('click', function() {
+    console.log("HIT");
+    totalDucksKilled++;
+    
 });
 
 
@@ -101,27 +132,14 @@ function displayStartingTimer(seconds){
             setTimeout(updateTimer, 1000);
         } else {
             timeElement.textContent = 'SHOOT';
-            setTimeout(() => timeElement.remove(), 1000);
+            setTimeout(() => {
+                timeElement.remove();
+                enableShooting();
+            }, 1000);
         }
     };
     updateTimer();
 }
-
-
-
-document.addEventListener('click', ()=> {
-         bullet.play();
-     if (bulletCounter ===2) {
-         bullet1Cover.style.display = "inline";
-     } else if ( bulletCounter ===1) {
-         bullet1Cover.style.display, bullet2Cover.style.display = "inline";
-     }else if ( bulletCounter ===0) {
-         bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
-     }
-     });
-
-
-
 
 
 function refreshScore(){
@@ -133,6 +151,7 @@ function showBullets() {
     const bulletCounter = document.getElementById("bullet-counter");
     const childDivs = bulletCounter.querySelectorAll("div");
     childDivs.forEach((div) => (div.style.display = "none"));
+
 }
 
 
@@ -144,7 +163,7 @@ const restartButton = document.getElementById("restart-button");
 
 
 function displayGameOver(score) {
-   isGameOver = true;
+    isGameOver = true;
     const scoreElement = document.getElementById("score");
     scoreElement.innerHTML = score;
     GameOverDiv.style.display = "flex";
@@ -155,16 +174,15 @@ function displayGameOver(score) {
 }
 
 function replay () {
-    hitDuckesDisplay();
+    hitDucksDisplay();
     startGame();
     stopIntroAndGameOverAudio()
 }
 
 
-
 // DUCKS
 
-function hitDuckesDisplay() {
+function hitDucksDisplay() {
     let ducks = Array.from(document.querySelector(".little-ducks").children);
     switch(hitDucks) {
         case 5: ducks[4].style.color = "red"; ducks[3].style.color = "red"; ducks[2].style.color = "red"; ducks[1].style.color = "red"; ducks[0].style.color = "red";
