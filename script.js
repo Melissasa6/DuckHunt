@@ -6,7 +6,6 @@
     let dog= document.getElementById("dog");
     let ducks = [];
     
-
     const bullet1Cover = document.querySelector(".bullet1-cover");
     const bullet2Cover = document.querySelector(".bullet2-cover");
     const bullet3Cover = document.querySelector(".bullet3-cover");
@@ -14,17 +13,21 @@
     const bullet = new Audio("audio/gun-shot.mp3");
     
     let score = 0; 
-    let bulletCounter = 10;
+
+    let bulletCounter = 3;
+
     let isGameOver = false;
     let maxFailedDucksToGameOver = 3;
     let failedDucks = 0;
-    let hitDucks = 0;
+    let hitDucks = 2;
     let isEnableShooting = false;
     
+
 
     window.addEventListener("load", () => {  
     startGame();
     });    
+
 
 function startGame() {
     console.log("Starting game...");
@@ -50,10 +53,11 @@ if (bulletCounter ===2) {
     bullet1Cover.style.display, bullet2Cover.style.display = "inline";
 }else if ( bulletCounter ===0) {
     bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
-    disableShooting();
-    displayGameOver(score);
+    setTimeout(() => {
+        displayGameOver(score);}, 1000);
 }
 });
+
 
 function enableShooting() {
     isEnableShooting = true;
@@ -151,6 +155,7 @@ function displayStartingTimer(seconds){
     updateTimer();
 }
 
+
 function refreshScore(){
     let score = document.querySelector(".score");
     score.innerHTML = `${hitDucks * 100}`;
@@ -168,18 +173,22 @@ function showBullets() {
 // GAME OVER
 
 const GameOver = document.getElementById("game-over-wrapper");
-const restartButton = document.getElementById("restart-button");
-
 
 function displayGameOver(score) {
     isGameOver = true;
+
     let scoreElement = document.getElementById("score");
+
+    setTimeout(() => {
+        const gameOverAudio = new Audio("audio/gameOver.wav");
+        gameOverAudio.play();
+    }, 1000);
+ 
     scoreElement.innerHTML = score;
     GameOver.style.display = "flex";
-    enableShooting();
+    
     
 }
-
 
 function replay () {
     hitDucksDisplay();
@@ -187,7 +196,7 @@ function replay () {
 }
 
 
-// DUCKS
+// DUCKS COUNTER
 
 function hitDucksDisplay() {
     console.log("hitduckdisplay");
@@ -211,3 +220,21 @@ function hitDucksDisplay() {
 }
 
 
+// DUCKS
+
+function shootDuck(){
+    hitDucks++;
+    refreshScore();
+
+    setTimeout(() => {
+        const duckFalling = new Audio("audio/duck-falling.mp3");
+        duckFalling.play();
+    }, 500)
+   
+}
+
+
+function refreshScore(){
+    let score = document.querySelector(".score");
+    score.innerHTML = `${hitDucks * 100}`;
+}
