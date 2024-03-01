@@ -14,12 +14,13 @@
     const bullet = new Audio("audio/gun-shot.mp3");
     
     let score = 0; 
-    let bulletCounter = 103;
+    let bulletCounter = 10;
     let isGameOver = false;
     let maxFailedDucksToGameOver = 3;
     let failedDucks = 0;
     let hitDucks = 0;
     let isEnableShooting = false;
+    
 
     window.addEventListener("load", () => {  
     startGame();
@@ -67,7 +68,9 @@ function disableShooting() {
 
 duck?.addEventListener('click', function() {
     console.log("HIT");
-    totalDucksKilled++;
+    hitDucks++;
+    hitDucksDisplay();
+    refreshScore();
     
 });
 
@@ -91,7 +94,7 @@ function dogMove(){
     setTimeout(() => {
         dogMove.classList.remove("dogRunContainer")},6000);
     setTimeout(() => {
-        const sniff = new Audio("audio/sniff.mp3");
+        let sniff = new Audio("audio/sniff.mp3");
         sniff.play();
     }, 2000);
 }
@@ -150,7 +153,7 @@ function displayStartingTimer(seconds){
 
 function refreshScore(){
     let score = document.querySelector(".score");
-    score.innerHTML = `${totalDucksKilled * 100}`;
+    score.innerHTML = `${hitDucks * 100}`;
 }
 
 function showBullets() {
@@ -170,9 +173,11 @@ const restartButton = document.getElementById("restart-button");
 
 function displayGameOver(score) {
     isGameOver = true;
-    const scoreElement = document.getElementById("score");
+    let scoreElement = document.getElementById("score");
     scoreElement.innerHTML = score;
     GameOver.style.display = "flex";
+    enableShooting();
+    
 }
 
 
@@ -185,6 +190,7 @@ function replay () {
 // DUCKS
 
 function hitDucksDisplay() {
+    console.log("hitduckdisplay");
     let ducks = Array.from(document.querySelector(".little-ducks").children);
     switch(hitDucks) {
         case 5: ducks[4].style.color = "yellow"; ducks[3].style.color = "yellow"; ducks[2].style.color = "yellow"; ducks[1].style.color = "yellow"; ducks[0].style.color = "yellow";
