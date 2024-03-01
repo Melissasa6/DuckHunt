@@ -13,12 +13,15 @@
     const bullet = new Audio("audio/gun-shot.mp3");
     
     let score = 0; 
+
     let bulletCounter = 3;
+
     let isGameOver = false;
     let maxFailedDucksToGameOver = 3;
     let failedDucks = 0;
     let hitDucks = 2;
     let isEnableShooting = false;
+    
 
 
     window.addEventListener("load", () => {  
@@ -69,7 +72,9 @@ function disableShooting() {
 
 duck?.addEventListener('click', function() {
     console.log("HIT");
-    totalDucksKilled++;
+    hitDucks++;
+    hitDucksDisplay();
+    refreshScore();
     
 });
 
@@ -93,7 +98,7 @@ function dogMove(){
     setTimeout(() => {
         dogMove.classList.remove("dogRunContainer")},6000);
     setTimeout(() => {
-        const sniff = new Audio("audio/sniff.mp3");
+        let sniff = new Audio("audio/sniff.mp3");
         sniff.play();
     }, 2000);
 }
@@ -151,7 +156,10 @@ function displayStartingTimer(seconds){
 }
 
 
-
+function refreshScore(){
+    let score = document.querySelector(".score");
+    score.innerHTML = `${hitDucks * 100}`;
+}
 
 function showBullets() {
     const bulletCounter = document.getElementById("bullet-counter");
@@ -169,16 +177,18 @@ const GameOver = document.getElementById("game-over-wrapper");
 function displayGameOver(score) {
     isGameOver = true;
 
+    let scoreElement = document.getElementById("score");
+
     setTimeout(() => {
         const gameOverAudio = new Audio("audio/gameOver.wav");
         gameOverAudio.play();
     }, 1000);
  
-    const scoreElement = document.getElementById("score");
     scoreElement.innerHTML = score;
     GameOver.style.display = "flex";
+    
+    
 }
-
 
 function replay () {
     hitDucksDisplay();
@@ -189,6 +199,7 @@ function replay () {
 // DUCKS COUNTER
 
 function hitDucksDisplay() {
+    console.log("hitduckdisplay");
     let ducks = Array.from(document.querySelector(".little-ducks").children);
     switch(hitDucks) {
         case 5: ducks[4].style.color = "yellow"; ducks[3].style.color = "yellow"; ducks[2].style.color = "yellow"; ducks[1].style.color = "yellow"; ducks[0].style.color = "yellow";
