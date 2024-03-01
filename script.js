@@ -156,17 +156,7 @@ function displayStartingTimer(seconds){
 }
 
 
-function refreshScore(){
-    let score = document.querySelector(".score");
-    score.innerHTML = `${hitDucks * 100}`;
-}
 
-function showBullets() {
-    const bulletCounter = document.getElementById("bullet-counter");
-    const childDivs = bulletCounter.querySelectorAll("div");
-    childDivs.forEach((div) => (div.style.display = "none"));
-
-}
 
 
 
@@ -237,4 +227,12 @@ function shootDuck(){
 function refreshScore(){
     let score = document.querySelector(".score");
     score.innerHTML = `${hitDucks * 100}`;
+}
+
+
+function showBullets() {
+    const bulletCounter = document.getElementById("bullet-counter");
+    const childDivs = bulletCounter.querySelectorAll("div");
+    childDivs.forEach((div) => (div.style.display = "none"));
+
 }
