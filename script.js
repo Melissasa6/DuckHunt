@@ -14,7 +14,7 @@
     let bulletCounter = 3;
 
     let isGameOver = false;
-    let youWin = false;
+    let youWon = false;
     let hitDucks = 0;
     let isEnableShooting = false;
     let ducksPaint = 0;
@@ -68,7 +68,7 @@ duck?.addEventListener('click', function() {
     hitDucksDisplay();
     displayScore();
     
-    resetBulletCounter ()
+    resetBulletCounter();
 
     setTimeout(() => {
         const duckFalling = new Audio("audio/duck-falling.mp3");
@@ -210,9 +210,6 @@ function displayStartingTimer(seconds){
 
 
 
-
-
-
 // GAME OVER
 
 const GameOver = document.getElementById("game-over-wrapper");
@@ -223,7 +220,7 @@ function displayGameOver(score) {
     let scoreElement = document.getElementById("score");
 
     setTimeout(() => {
-        const gameOverAudio = new Audio("audio/gameOver.wav");
+        const gameOverAudio = new Audio("audio/gameOver.mp3");
         gameOverAudio.play();
     }, 1000);
  
@@ -231,12 +228,6 @@ function displayGameOver(score) {
     GameOver.style.display = "flex";
 }
 
-
-
-function replay () {
-    hitDucksDisplay();
-    startGame();
-}
 
 
 // DUCKS COUNTER
@@ -279,12 +270,16 @@ function displayScore(){
 function updateRound() {
 
    let rounds = document.querySelector(".roundNumber");
+   const nextRoundSound = new Audio("audio/nextRound.mp3");
 
    switch(hitDucks) {
     case 6:
         round++;
         rounds.innerHTML = `${round}`;
         document.body.style.backgroundColor = "pink";
+        setTimeout(() => {
+           nextRoundSound.play();
+        }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
@@ -292,6 +287,9 @@ function updateRound() {
         round++;
         rounds.innerHTML = `${round}`;
         document.body.style.backgroundColor = "orange";
+        setTimeout(() => {
+            nextRoundSound.play();
+         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
@@ -299,6 +297,9 @@ function updateRound() {
         round++;
         rounds.innerHTML = `${round}`;
         document.body.style.backgroundColor = "lightgreen";
+        setTimeout(() => {
+            nextRoundSound.play();
+         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
@@ -306,6 +307,9 @@ function updateRound() {
         round++;
         rounds.innerHTML = `${round}`;
         document.body.style.backgroundColor = "lightblue";
+        setTimeout(() => {
+            nextRoundSound.play();
+         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
@@ -313,6 +317,9 @@ function updateRound() {
         round++;
         rounds.innerHTML = `${round}`;
         document.body.style.backgroundColor = "lightyellow";
+        setTimeout(() => {
+            nextRoundSound.play();
+         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
@@ -325,12 +332,14 @@ function updateRound() {
 }
 
 
+// WINNER
+
 const Winner = document.getElementById("winner-wrapper");
 function displayWinner(score) {
 
-     youWin = true;
+    youWon = true;
 
-     let scoreElement = document.getElementById("winnerScore");
+    let scoreElement = document.getElementById("winnerScore");
 
     
     const gameOverAudio = new Audio("audio/winner-sound.wav");
