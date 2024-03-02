@@ -121,9 +121,6 @@ document.addEventListener('click', ()=> {
      });
 
 
-
-
-
 function refreshScore(){
     let score = document.querySelector(".score");
     score.innerHTML = `${totalDucksKilled * 100}`;
@@ -183,5 +180,194 @@ function hitDuckesDisplay() {
         break;
     } 
 }
+
+// ===============================================================================
+// =================   DUCK FLY   ================================================
+// ===============================================================================
+
+function play() {
+    let xO = getRandomInt(100);
+    let duck1 = createDuck(xO, 35);
+    
+    duck1.addEventListener("animationend", () => {
+        
+        console.log("animation end")
+        
+        xO = duck1.positionX;
+        yO = duck1.positionY;
+
+        // Remove all the classes from div
+        duck1.removeAttribute('class');
+          
+    });
+
+}
+
+const createDuck = (xO, yO) => {
+
+    // DEFINE ORIGIN IF IT DOES NOT EXITS
+    if (xO === null) {
+        xO = getRandomInt(100);
+    }
+
+    if (yO === null) {
+        yO = 35;
+    }
+
+    // DEFINE RANDOM DESTINATION 
+    let posX = getRandomInt(100);
+    console.log(posX);
+    let posY = getRandomInt(35);
+    console.log(posY);
+
+    // CREATE DIV DUCK AND ASSERT POSITIONS
+    let root = document.querySelector(':root');
+    let duck = document.createElement("div");
+    duck.id = getRandomInt(50);
+    duck.positionXO = xO;
+    duck.positionYO = yO;
+    duck.positionX = posX;
+    duck.positionY = posY;
+    
+    // DEFINE CLASS BASED ON POSITION VALUES
+    defineMovement(xO, yO, posX, posY, duck);
+    root.append(duck);
+
+    // DETECT ANIMATION AND AND DEFINE NEW MOVE
+    
+    
+    return duck;
+}
+
+function defineMovement(xO, yO, posX, posY, duck) {
+
+    console.log("define move");
+    if (xO === posX) {
+        if (yO === posY) {
+            console.log("generate new posY");
+            y = getRandomInt(0,35);
+        }
+        // ------ FLY DOWN ------
+        if (yO > posY) {
+            console.log("FLY DOWN");
+        
+            
+            // SET PROPERTIES POSITION
+
+            duck.classList.add("duckFlyUp");
+            duck.classList.add("duckFlyUpAnimation");
+
+        }
+
+        // ------ FLY UP -------
+        if (yO < posY) {
+
+            console.log("FLY UP");
+            // SET PROPERTIES POSITION
+
+            duck.classList.add("duckFlyUp");
+            duck.classList.add("duckFlyUpAnimation");
+
+        }
+    }
+
+    if (xO > posX) {
+        // --------- FLY BACK HORIZONTAL ---------
+        if (yO === posY) {
+            console.log("FLY BACK");
+            duck.style.setProperty('--backDuckOX', `${xO}vw`);
+            duck.style.setProperty('--backDuckOY', `${yO}vw`);
+            duck.style.setProperty('--backDuckX', `${posX}vw`);
+            duck.style.setProperty('--backDuckY', `${posY}vw`);
+
+            duck.classList.add("duckFlyBack");
+            duck.classList.add("duckFlyBackAnimation");
+        }
+
+        // -------- LEFT DOWN ---------------------
+        if (yO < posY) {
+            console.log("LEFT DOWN");
+            duck.style.setProperty('--leftDownXO', `${xO}vw`);
+            duck.style.setProperty('--leftDownYO', `${yO}vw`);
+            duck.style.setProperty('--leftDownX', `${posX}vw`);
+            duck.style.setProperty('--leftDownY', `${posY}vw`);
+
+            duck.classList.add("duckFlyDiagonalLeftDown");
+            duck.classList.add("diagonalLeftDownAnimation");
+        }
+
+        // -------- LEFT UP ----------------------
+
+        if (yO > posY) {
+            console.log("LEFT UP");
+            duck.style.setProperty('--leftUpXO', `${xO}vw`);
+            duck.style.setProperty('--leftUpYO', `${yO}vw`);
+            duck.style.setProperty('--leftUpX', `${posX}vw`);
+            duck.style.setProperty('--leftUpY', `${posY}vw`);
+
+            duck.classList.add("duckFlyDiagonalLeftUp");
+            duck.classList.add("diagonalLeftUpAnimation");
+        }
+    }
+
+    if (xO < posX) {
+        
+        // -------- LEFT TO RIGHT -----------
+        if (yO === posY){
+            console.log("LEFT TO RIGHT");
+            duck.style.setProperty('--duckXO', `${xO}vw`);
+            duck.style.setProperty('--duckYO', `${yO}vw`);
+            duck.style.setProperty('--duckX', `${posX}vw`);
+            duck.style.setProperty('--duckY', `${posY}vw`);
+
+            duck.classList.add("duckFlyRight");
+            duck.classList.add("duckFlyRightAnimation"); 
+        }
+
+        // -------- RIGHT DOWN -------------
+        if (yO < posY) {
+            console.log("RIGHT DOWN");
+            duck.style.setProperty('--rightDownXO', `${xO}vw`);
+            duck.style.setProperty('--rightDownYO', `${yO}vw`);
+            duck.style.setProperty('--rightDownX', `${posX}vw`);
+            duck.style.setProperty('--rightDownY', `${posY}vw`);
+
+            duck.classList.add("duckFlyDiagonalRightDown");
+            duck.classList.add("diagonalRightDownAnimation"); 
+
+        }
+
+        // ------- RIGHT UP -----------------
+        if (yO > posY) {
+            console.log("RIGHT UP");
+            duck.style.setProperty('--rUpDuckXO', `${xO}vw`);
+            duck.style.setProperty('--rUpDuckYO', `${yO}vw`);
+            duck.style.setProperty('--rUpDuckX', `${posX}vw`);
+            duck.style.setProperty('--rUpDuckY', `${posY}vw`);
+
+            duck.classList.add("duckFlyDiagonalRightUp");
+            duck.classList.add("diagonalRightUpAnimation"); 
+
+        }
+
+    }
+
+}
+
+
+
+function getRandomInt(max) {
+    return Math.floor(Math.random() * max);
+
+}
+
+function getRandomIntInclusive(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+  }
+
+
+
 
 

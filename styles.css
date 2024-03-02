@@ -69,7 +69,6 @@ body, .field-container{
   width: 80%;
   height: 60%;
   align-self: center;
-  left: %;
   transition: filter 0.3s ease-in-out;
   z-index: 250;
 }
@@ -275,19 +274,21 @@ h3 {
   top: 5%;
   left: 5%;
   transform: scale(3);
-   animation: 
-          flyMove 5s linear infinite, 
-          rightFlyDuck 0.25s steps(1) infinite;
-  animation-direction: normal;
-
-
 }
+
+.duckFlyRightAnimation {
+  animation: 
+    flyMove 3s linear , 
+    rightFlyDuck 0.25s steps(1) infinite forwards;
+  animation-direction: normal;
+}
+
 @keyframes flyMove {
   from{
-    transform: translate(0,0%) scale(3);
+    transform: translate(var(--duckXO),var(--duckYO)) scale(3);
   }
   to{
-    transform: translate(100vw,0%) scale(3);
+    transform: translate(var(--duckX),var(--duckY)) scale(3);
   }
   
 }
@@ -326,19 +327,23 @@ h3 {
   top: 5%;
   left: 5%;
   transform: scale(3);
+}
+
+.duckFlyBackAnimation {
   animation: 
-          flyBackMove 5s linear infinite, 
+          flyBackMove 2s linear, 
           rightFlyDuck 0.25s steps(1) infinite;
   animation-direction: normal;
-
 }
 
 @keyframes flyBackMove {
   from{
-    transform: translate(calc(100vw - 34px) ,0%) scale(3) scaleX(-1);
+    transform: translate(var(--backDuckOX) ,var(--backDuckOY)) scale(3) scaleX(-1);
+    /* transform: translate(calc(100vw - 34px) ,0%) scale(3) scaleX(-1); */
   }
   to{
-    transform: translate(0%,0%) scale(3) scaleX(-1);
+    transform: translate(var(--backDuckX), var(--backDuckY)) scale(3) scaleX(-1);
+    /* transform: translate(0%,0%) scale(3) scaleX(-1); */
   }
   
 }
@@ -356,11 +361,14 @@ h3 {
   top: 5%;
   left: 5%;
   transform: scale(3);
+
+}
+
+.duckFlyUpAnimation {
   animation: 
-          flyUp 2s linear infinite, 
+          flyUp 2s linear, 
           upFlyDuck 0.25s steps(1) infinite;
   animation-direction: alternate;
-
 }
 
 @keyframes upFlyDuck {
@@ -387,10 +395,10 @@ h3 {
 
 @keyframes flyUp {
   from{
-    transform: translateY(35vw) scale(3);
+    transform: translateY(var(--upDuckYO)) scale(3);
   }
   to{
-    transform: translateY(0%) scale(3);
+    transform: translateY(var(--upDuckY)) scale(3);
   }
   
 }
@@ -408,11 +416,14 @@ h3 {
   top: 5%;
   left: 5%;
   transform: scale(3);
+
+}
+
+.diagonalRightUpAnimation {
   animation: 
-          diagonalMoveRightUp 2s linear infinite, 
+          diagonalMoveRightUp 2s linear, 
           diagonalFlyDuck 0.25s steps(1) infinite;
   animation-direction: normal;
-
 }
 
 
@@ -438,10 +449,11 @@ h3 {
 
 @keyframes diagonalMoveRightUp {
   from{
-    transform: translate(0%,35vw) scale(3);
+    transform: translate(var(--rUpDuckXO),var(--rUpDuckYO)) scale(3);
   }
   to{
-    transform: translate(50vw, 0%) scale(3);
+    transform: translate(var(--rUpDuckX), var(--rUpDuckY)) scale(3);
+    /* transform: translate(50vw, 0%) scale(3); */
   }
   
 }
@@ -459,20 +471,24 @@ h3 {
   top: 5%;
   left: 5%;
   transform: scale(3);
+}
+
+.diagonalLeftDownAnimation {
   animation: 
-          diagonalMoveLeftDown 2s linear infinite, 
+          diagonalMoveLeftDown 2s linear, 
           diagonalFlyDuck 0.25s steps(1) infinite;
   animation-direction: normal;
-
 }
 
 
 @keyframes diagonalMoveLeftDown {
   from{
-    transform: translate(50vw, 0%) scale(3) rotateY(180deg) rotateZ(90deg);
+    transform: translate(var(--leftDownXO), var(--leftDownYO)) scale(3) rotateY(180deg) rotateZ(90deg);
+    /* transform: translate(50vw, 0%) scale(3) rotateY(180deg) rotateZ(90deg); */
   }
   to{
-    transform: translate(0%,35vw) scale(3) rotateY(180deg) rotateZ(90deg);
+    transform: translate(var(--leftDownX),var(--leftDownY)) scale(3) rotateY(180deg) rotateZ(90deg);
+    /* transform: translate(0%,35vw) scale(3) rotateY(180deg) rotateZ(90deg); */
   }
   
 }
@@ -490,20 +506,26 @@ h3 {
   top: 5%;
   left: 5%;
   transform: scale(3);
+  
+
+}
+
+.diagonalRightDownAnimation {
   animation: 
-          diagonalMoveRightDown 2s linear infinite, 
+          diagonalMoveRightDown 2s linear, 
           diagonalFlyDuck 0.25s steps(1) infinite;
   animation-direction: normal;
-
 }
 
 
 @keyframes diagonalMoveRightDown {
   from{
-    transform: translate(20vw, 0%) scale(3) rotateZ(90deg);
+    transform: translate(var(--rightDownXO), var(--rightDownYO)) scale(3) rotateZ(90deg);
+    /* transform: translate(20vw, 0%) scale(3) rotateZ(90deg); */
   }
   to{
-    transform: translate(80vw,35vw) scale(3) rotateZ(90deg);
+    transform: translate(var(--rightDownX),var(--rightDownY)) scale(3) rotateZ(90deg);
+    /* transform: translate(80vw,35vw) scale(3) rotateZ(90deg); */
   }
   
 }
@@ -521,23 +543,77 @@ h3 {
   top: 5%;
   left: 5%;
   transform: scale(3);
+
+}
+
+.diagonalLeftUpAnimation {
   animation: 
-          diagonalMoveLeftUp 2s linear infinite, 
+          diagonalMoveLeftUp 2s linear, 
           diagonalFlyDuck 0.25s steps(1) infinite;
   animation-direction: normal;
-
 }
 
 
 @keyframes diagonalMoveLeftUp {
   from{
-    transform: translate(80vw,35vw) scale(3) rotateY(180deg) ;
+    transform: translate(var(--leftUpXO),var(--leftUpYO)) scale(3) rotateY(180deg) ;
+    /* transform: translate(80vw,35vw) scale(3) rotateY(180deg) ; */
   }
   to{
-    transform: translate(20vw, 0%) scale(3) rotateY(180deg) ;
+    transform: translate(var(--leftUpX), var(--leftUpY)) scale(3) rotateY(180deg) ;
+    /* transform: translate(20vw, 0%) scale(3) rotateY(180deg) ; */
   }
   
 }
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* **************         THE DUCK'S DEATH       ************************ */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.duckDeathFall {
+  position: absolute;
+  background: url('images/duckhunt_various_sheet.png');
+	background-position: -48px -237px;
+  width: 18px;
+	height: 30px;
+  z-index: 90; 
+  top: 5%;
+  left: 5%;
+  transform: scale(3);
+ 
+
+}
+
+.duckDeathFallAnimation {
+  animation: 
+  deathMove 2s linear infinite;
+  animation-direction: normal;
+}
+
+@keyframes deathMove {
+  from{
+    transform: translate(var(--deathMoveXo), var(--deathMoveYo)) scale(3);
+    /* transform: translate(20vw, 15%) scale(3); */
+  }
+  to{
+    transform: translate(var(--deathMoveX), var(--deathMoveY)) scale(3);
+    /* transform: translate(20vw, 35vw) scale(3); */
+  }
+  
+}
+
+.duckHeadShot {
+  position: absolute;
+  background: url('images/duckhunt_various_sheet.png');
+	background-position: -1px -238px;
+  width: 31px;
+	height: 29px;
+  z-index: 90; 
+  top: 5%;
+  left: 5%;
+  transform: scale(3);
+
+}  
 
 
 
@@ -815,4 +891,8 @@ h3 {
 100%{
   transform:scale(4) translateY(0px);
 }
+}
+
+.invisible {
+  display: none;
 }
