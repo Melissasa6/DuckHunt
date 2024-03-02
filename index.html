@@ -28,17 +28,17 @@
         
 
 
-      <div id="dogRun">
-        
-    </div>
+        <div id="dogRun"></div>
 
-    <div id="dogLaughContainer">
-        
-    </div>
-    <div id="dogGotDuckContainer">
-        
-    </div>
-      
+        <div id="dogLaughContainer"></div>
+
+        <div id="dogGotDuckContainer"></div>
+
+        <div id="round-number-container" class = "round-number-container">
+             <div class ="round-inner">R</div>
+             <div class ="roundNumber">1</div>
+        </div>    
+
         <div id="bullet-counter">
             <div class="bullet1-cover"></div>
             <div class="bullet2-cover"></div>
@@ -48,10 +48,26 @@
 
         <div id ="game-over-wrapper" class ="game-over-wrapper">
             <h1 class= "title-game-over">GAME OVER</h1>
+            <div class = "scoreGame">
             <p>Score: <span id= "score">0</span></p>
-            <a href="index.html"><img id = "restart-button" src= "images/Replay-button.png">
+            </div>
+            <a href="index.html" >
+                <div class = "restart-button"><center><img id = "restart-button" src= "images/Replay-button.png" ></center>
+                </div>
             </a>
         </div>
+
+
+        <div id ="winner-wrapper" class ="winner-wrapper">
+            <h1 class= "title-winner">YOU WON</h1>
+            <div class = "scoreGame">
+            <p>Score: <span id= "winnerScore">0</span></p>
+            </div>
+            <a href="index.html">
+                <div class = "restart-button"><center><img id = "replay-button" src= "images/Replay-button.png"></center>
+                </div>
+            </a>
+        </div> 
         
         <div class="ducks-counter">
             <div class= "ducks-counter-inner"> 

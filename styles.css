@@ -11,14 +11,16 @@
   src: url(fonts/m29.TTF);
 }
 
+body{
+  background-color: aqua;
+}
 
 body, .field-container{
     width: 100vw;
     height: 100vh;
     overflow: hidden;
     padding: 0;
-    margin:0;
-    background-color: aqua;
+    margin: 0;
     position: relative;
     display: flex;
     justify-content: center;
@@ -96,38 +98,51 @@ body, .field-container{
   align-items: center;
 }
 
-
-#restart-button {
-  align-self: center;
-  width: 50%;
-  height: 60%;
-  margin-left: 12em;
-  margin-top: 6em;
-
+#restart-button, #replay-button {
+  width: 30%;
+  height: 30%;
 }
 
-.game-over-wrapper p {
+.restart-button {
+  justify-content: center;
+}
+
+.title-game-over, .title-winner {
+  font-family: duckHuntFont;
+  font-size: 600%;
+  padding: 0.1em;
+  text-align: center;
+  color: orangered
+}
+
+.scoreGame {
   color: yellow;
   font-weight: bold;
   font-family: Georgia, 'Times New Roman', Times, serif;
   font-size: 4em;
+  text-align: center;
 }
 
 
-.game-over-container #score {
-  font-weight: bold;
-  align-items: center;
-  font-size: 1em;
-  font-family: Georgia, 'Times New Roman', Times, serif;
+.winner-wrapper {
+display: none;
+width: 60%;
+height: 65%;
+flex-direction: column;
+position: fixed;
+z-index: 145;
+align-self: center; 
+align-items: center;
 }
 
 
-.title-game-over {
+
+.title-winner {
   font-family: duckHuntFont;
-  font-size: 700%;
+  font-size: 800%;
   padding: 0.1em;
   text-align: center;
-  color: orangered
+  color: orange;
 }
 
 
@@ -139,6 +154,33 @@ body, .field-container{
   transition: all .3s ease-out;
   z-index: 120;
 }
+
+#round-number-container {
+  background-color: black;
+  position: fixed;
+  left: 5em;
+  width: 5.2em;
+  height: 3em;
+  z-index: 110;
+  bottom: 6em;
+  border: 0.2em solid rgb(162, 242, 119);
+  overflow: hidden;
+  border-radius: 0.6em;
+  display: flex;
+  flex-direction: row; 
+  justify-content: space-evenly;
+}
+
+.round-inner, .roundNumber {
+  font-size: 1.2em;
+  height: 100%;
+  color: rgb(162, 242, 119);
+  font-family: duckHuntFont;
+  justify-content: center;
+  margin-top: 0.6em;
+
+}
+
 
 
 #bullet-counter{
@@ -242,7 +284,7 @@ body, .field-container{
     font-size: 0.7em;
     height: 100%;
     color: whitesmoke;
-    font-family:duckHuntFont;
+    font-family: duckHuntFont;
     justify-content:center;
     margin-top: 2em;
   }
