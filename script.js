@@ -286,21 +286,8 @@ function hitDucksDisplay() {
 // ===============================================================================
 
 function play() {
-    let xO = getRandomInt(100);
-    let duck1 = createDuck(xO, 35);
-    
-    duck1.addEventListener("animationend", () => {
-        
-        console.log("animation end")
-        
-        xO = duck1.positionX;
-        yO = duck1.positionY;
-
-        // Remove all the classes from div
-        duck1.removeAttribute('class');
-          
-    });
-
+    let xO = getRandomInt(66);
+    createDuck(xO, 35);
 }
 
 const createDuck = (xO, yO) => {
@@ -315,7 +302,7 @@ const createDuck = (xO, yO) => {
     }
 
     // DEFINE RANDOM DESTINATION 
-    let posX = getRandomInt(100);
+    let posX = getRandomInt(66);
     console.log(posX);
     let posY = getRandomInt(35);
     console.log(posY);
@@ -333,15 +320,33 @@ const createDuck = (xO, yO) => {
     defineMovement(xO, yO, posX, posY, duck);
     root.append(duck);
 
-    // DETECT ANIMATION AND AND DEFINE NEW MOVE
+    // DETECT ANIMATION AND DEFINE NEW MOVE
     
-    
-    return duck;
+    duck.addEventListener("animationend", () => {
+        
+        console.log("ANIMATION END");
+        
+        xO = duck.positionX;
+        console.log("xO = " + xO);
+        yO = duck.positionY;
+        console.log("yO = " + yO);
+        
+        // Remove all the classes from div
+        duck.removeAttribute('class');
+        
+        duck = createDuck(xO,yO);
+
+    });
+
+    // return duck;
 }
+
+let movecount = 0;
 
 function defineMovement(xO, yO, posX, posY, duck) {
 
-    console.log("define move");
+    movecount++;
+    console.log("define move" + movecount);
     if (xO === posX) {
         if (yO === posY) {
             console.log("generate new posY");
@@ -350,10 +355,15 @@ function defineMovement(xO, yO, posX, posY, duck) {
         // ------ FLY DOWN ------
         if (yO > posY) {
             console.log("FLY DOWN");
+
+            duck.style.setProperty('--downDuckOX', `${xO}vw`);
+            duck.style.setProperty('--downDuckOY', `${yO}vw`);
+            duck.style.setProperty('--downDuckX', `${posX}vw`);
+            duck.style.setProperty('--downDuckY', `${posY}vw`);
         
             
             // SET PROPERTIES POSITION
-
+            // duck.setAttribute("class")
             duck.classList.add("duckFlyUp");
             duck.classList.add("duckFlyUpAnimation");
 
@@ -363,7 +373,10 @@ function defineMovement(xO, yO, posX, posY, duck) {
         if (yO < posY) {
 
             console.log("FLY UP");
-            // SET PROPERTIES POSITION
+            duck.style.setProperty('--upDuckOX', `${xO}vw`);
+            duck.style.setProperty('--upDuckOY', `${yO}vw`);
+            duck.style.setProperty('--upDuckX', `${posX}vw`);
+            duck.style.setProperty('--upDuckY', `${posY}vw`);
 
             duck.classList.add("duckFlyUp");
             duck.classList.add("duckFlyUpAnimation");
@@ -451,6 +464,14 @@ function defineMovement(xO, yO, posX, posY, duck) {
         }
 
     }
+
+}
+
+const duckDeathMove = (deathDuck) => {
+
+    
+
+
 
 }
 
