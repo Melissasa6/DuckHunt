@@ -317,7 +317,7 @@ const createDuck = (xO, yO) => {
         // yO = duck.positionY;
 
         const rect = duck.getBoundingClientRect();
-        const xO = (rect.left + ((rect.right - rect.left) / 2)) / window.innerWidth * 100 - 6;
+        const xO = (rect.left + ((rect.right - rect.left) / 2)) / window.innerWidth * 100;
         const yO = (rect.bottom + ((rect.top - rect.bottom) / 2)) / window.innerWidth * 100;
 
 
@@ -480,30 +480,32 @@ const createDeathDuck = (duck, xO, yO) => {
 
     deathDuck.positionXO = xO;
     deathDuck.positionYO = yO;
-    deathDuck.positionX = xO;
-    deathDuck.positionY = 35;
-
     
-   // duckHeadShot(xO, yO, deathDuck);
-    duckDeathMove(xO, yO, deathDuck)
+    duckHeadShot(xO, yO, deathDuck);
     root.append(deathDuck);
-
 }
 
-const duckHeadShot = (x, y, duck) => {
+const duckHeadShot = (xO, yO, duck) => {
 
-    duck.style.setProperty('--positionDeathY', `${y}vw`);
-    duck.style.setProperty('--positionDeathX', `${x}vw`);
+    duck.style.setProperty('--positionDeathY', `${yO}vw`);
+    duck.style.setProperty('--positionDeathX', `${xO}vw`);
 
     duck.classList.add("duckHeadShot");
+
+    duck.addEventListener("animationend", () => {
+        console.log("end animation duckHeadShot");
+        duck.removeAttribute("class");
+        duckDeathMove(xO, yO, duck)
+    });
+    
 
 }
 
 const duckDeathMove = (xO, yO, duck) => {
 
-    duck.style.setProperty('--deathMoveXo', `${xO}vw`);
+    duck.style.setProperty('--deathMoveXo', `${xO-4}vw`);
     duck.style.setProperty('--deathMoveYo', `${yO}vw`);
-    duck.style.setProperty('--deathMoveX', `${xO}vw`);
+    duck.style.setProperty('--deathMoveX', `${xO-4}vw`);
     duck.style.setProperty('--deathMoveY', `${35}vw`);
 
     duck.classList.add("duckDeathFall");
