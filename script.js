@@ -362,30 +362,30 @@ function defineMovement(xO, yO, posX, posY, duck) {
         }
         // ------ FLY DOWN ------
         if (yO > posY) {
-            console.log("FLY DOWN");
-
-            duck.style.setProperty('--downDuckOX', `${xO}vw`);
-            duck.style.setProperty('--downDuckOY', `${yO}vw`);
-            duck.style.setProperty('--downDuckX', `${posX}vw`);
-            duck.style.setProperty('--downDuckY', `${posY}vw`);
-        
-            duck.classList.add("duckFlyDown");
-            duck.classList.add("duckFlyDownAnimation");
-
-        }
-
-        // ------ FLY UP -------
-        if (yO < posY) {
-
             console.log("FLY UP");
+            
             duck.style.setProperty('--upDuckOX', `${xO}vw`);
             duck.style.setProperty('--upDuckOY', `${yO}vw`);
             duck.style.setProperty('--upDuckX', `${posX}vw`);
             duck.style.setProperty('--upDuckY', `${posY}vw`);
-
+            
             duck.classList.add("duckFlyUp");
             duck.classList.add("duckFlyUpAnimation");
-
+            
+            
+        }
+        
+        // ------ FLY UP -------
+        if (yO < posY) {
+            duck.style.setProperty('--downDuckOX', `${xO}vw`);
+            duck.style.setProperty('--downDuckOY', `${yO}vw`);
+            duck.style.setProperty('--downDuckX', `${posX}vw`);
+            duck.style.setProperty('--downDuckY', `${posY}vw`);
+            
+            console.log("FLY DOWN");
+            
+            duck.classList.add("duckFlyDown");
+            duck.classList.add("duckFlyDownAnimation");
         }
     }
 
