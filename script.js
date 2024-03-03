@@ -14,7 +14,7 @@
     let bulletCounter = 3;
 
     let isGameOver = false;
-    let youWin = false;
+    let youWon = false;
     let hitDucks = 0;
     let isEnableShooting = false;
     let ducksPaint = 0;
@@ -33,7 +33,12 @@ function startGame() {
     disableShooting();    
     dogMove();
     setTimeout(() => {displayStartingTimer(3);}, 6000);
-    showBullets();  
+    showBullets();
+    setTimeout(() => {
+        releaseDucks();
+        releaseDucks();
+    }, 10000);  
+    
 }
 
 
@@ -61,28 +66,28 @@ document.addEventListener('click', (event)=> {
 
 
 
-duck?.addEventListener('click', function() {
-    console.log("HIT");
-    hitDucks++;
-    ducksPaint++;
-    hitDucksDisplay();
-    displayScore();
+// duck?.addEventListener('click', function() {
+//     console.log("HIT");
+//     hitDucks++;
+//     ducksPaint++;
+//     hitDucksDisplay();
+//     displayScore();
     
-    resetBulletCounter ()
+//     resetBulletCounter();
 
-    setTimeout(() => {
-        const duckFalling = new Audio("audio/duck-falling.mp3");
-        duckFalling.play();
-    }, 500);
+//     setTimeout(() => {
+//         const duckFalling = new Audio("audio/duck-falling.mp3");
+//         duckFalling.play();
+//     }, 500);
 
-    dogGotDuck();
+//     dogGotDuck();
 
-    setTimeout(() => {
-        updateRound();
-    }, 500);
+//     setTimeout(() => {
+//         updateRound();
+//     }, 500);
 
     
-});
+// });
 
 
 function hideBullets() {
@@ -208,28 +213,6 @@ function displayStartingTimer(seconds){
     updateTimer();
 }
 
-document.addEventListener('click', ()=> {
-         bullet.play();
-     if (bulletCounter ===2) {
-         bullet1Cover.style.display = "inline";
-     } else if ( bulletCounter ===1) {
-         bullet1Cover.style.display, bullet2Cover.style.display = "inline";
-     }else if ( bulletCounter ===0) {
-         bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
-     }
-     });
-
-
-function refreshScore(){
-    let score = document.querySelector(".score");
-    score.innerHTML = `${totalDucksKilled * 100}`;
-}
-
-function showBullets() {
-    const bulletCounter = document.getElementById("bullet-counter");
-    const childDivs = bulletCounter.querySelectorAll("div");
-    childDivs.forEach((div) => (div.style.display = "none"));
-}
 
 
 // GAME OVER
@@ -242,7 +225,7 @@ function displayGameOver(score) {
     let scoreElement = document.getElementById("score");
 
     setTimeout(() => {
-        const gameOverAudio = new Audio("audio/gameOver.wav");
+        const gameOverAudio = new Audio("audio/gameOver.mp3");
         gameOverAudio.play();
     }, 1000);
  
@@ -250,12 +233,6 @@ function displayGameOver(score) {
     GameOver.style.display = "flex";
 }
 
-
-
-function replay () {
-    hitDucksDisplay();
-    startGame();
-}
 
 
 // DUCKS COUNTER
@@ -285,7 +262,7 @@ function hitDucksDisplay() {
 // =================   DUCK FLY   ================================================
 // ===============================================================================
 
-function play() {
+function releaseDucks() {
     let xO = getRandomInt(66);
     createDuck(xO, 35);
 }
@@ -303,9 +280,7 @@ const createDuck = (xO, yO) => {
 
     // DEFINE RANDOM DESTINATION 
     let posX = getRandomInt(66);
-    console.log(posX);
     let posY = getRandomInt(35);
-    console.log(posY);
 
     // CREATE DIV DUCK AND ASSERT POSITIONS
     let root = document.querySelector(':root');
@@ -327,9 +302,7 @@ const createDuck = (xO, yO) => {
         console.log("ANIMATION END");
         
         xO = duck.positionX;
-        console.log("xO = " + xO);
         yO = duck.positionY;
-        console.log("yO = " + yO);
         
         // Remove all the classes from div
         duck.removeAttribute('class');
@@ -338,7 +311,42 @@ const createDuck = (xO, yO) => {
 
     });
 
-    // return duck;
+    duck.addEventListener('click', function() {
+
+        // xO = duck.positionX;
+        // yO = duck.positionY;
+
+        const rect = duck.getBoundingClientRect();
+        const xO = (rect.left + ((rect.right - rect.left) / 2)) / window.innerWidth * 100;
+        const yO = (rect.bottom + ((rect.top - rect.bottom) / 2)) / window.innerWidth * 100;
+
+
+        duck.removeAttribute("class");
+        createDeathDuck(duck, xO, yO);
+        console.log("HIT");
+        hitDucks++;
+        ducksPaint++;
+        hitDucksDisplay();
+        displayScore();
+        
+        resetBulletCounter();
+    
+        setTimeout(() => {
+            const duckFalling = new Audio("audio/duck-falling.mp3");
+            duckFalling.play();
+
+        }, 500);
+    
+        dogGotDuck();
+    
+        setTimeout(() => {
+            updateRound();
+        }, 500);
+
+        createDuck(getRandomInt(66), 35);
+        
+    });
+
 }
 
 let movecount = 0;
@@ -354,33 +362,30 @@ function defineMovement(xO, yO, posX, posY, duck) {
         }
         // ------ FLY DOWN ------
         if (yO > posY) {
-            console.log("FLY DOWN");
-
-            duck.style.setProperty('--downDuckOX', `${xO}vw`);
-            duck.style.setProperty('--downDuckOY', `${yO}vw`);
-            duck.style.setProperty('--downDuckX', `${posX}vw`);
-            duck.style.setProperty('--downDuckY', `${posY}vw`);
-        
-            
-            // SET PROPERTIES POSITION
-            // duck.setAttribute("class")
-            duck.classList.add("duckFlyUp");
-            duck.classList.add("duckFlyUpAnimation");
-
-        }
-
-        // ------ FLY UP -------
-        if (yO < posY) {
-
             console.log("FLY UP");
+            
             duck.style.setProperty('--upDuckOX', `${xO}vw`);
             duck.style.setProperty('--upDuckOY', `${yO}vw`);
             duck.style.setProperty('--upDuckX', `${posX}vw`);
             duck.style.setProperty('--upDuckY', `${posY}vw`);
-
+            
             duck.classList.add("duckFlyUp");
             duck.classList.add("duckFlyUpAnimation");
-
+            
+            
+        }
+        
+        // ------ FLY UP -------
+        if (yO < posY) {
+            duck.style.setProperty('--downDuckOX', `${xO}vw`);
+            duck.style.setProperty('--downDuckOY', `${yO}vw`);
+            duck.style.setProperty('--downDuckX', `${posX}vw`);
+            duck.style.setProperty('--downDuckY', `${posY}vw`);
+            
+            console.log("FLY DOWN");
+            
+            duck.classList.add("duckFlyDown");
+            duck.classList.add("duckFlyDownAnimation");
         }
     }
 
@@ -467,31 +472,61 @@ function defineMovement(xO, yO, posX, posY, duck) {
 
 }
 
-const duckDeathMove = (deathDuck) => {
 
+const createDeathDuck = (duck, xO, yO) => {
+
+    let root = document.querySelector(':root');
+    let deathDuck = document.createElement("div");
+
+    deathDuck.positionXO = xO;
+    deathDuck.positionYO = yO;
     
+    duckHeadShot(xO, yO, deathDuck);
+    root.append(deathDuck);
+}
 
+const duckHeadShot = (xO, yO, duck) => {
 
+    duck.style.setProperty('--positionDeathY', `${yO}vw`);
+    duck.style.setProperty('--positionDeathX', `${xO}vw`);
+
+    duck.classList.add("duckHeadShot");
+
+    duck.addEventListener("animationend", () => {
+        console.log("end animation duckHeadShot");
+        duck.removeAttribute("class");
+        duckDeathMove(xO, yO, duck)
+    });
+    
 
 }
 
+const duckDeathMove = (xO, yO, duck) => {
 
+    duck.style.setProperty('--deathMoveXo', `${xO-4}vw`);
+    duck.style.setProperty('--deathMoveYo', `${yO}vw`);
+    duck.style.setProperty('--deathMoveX', `${xO-4}vw`);
+    duck.style.setProperty('--deathMoveY', `${35}vw`);
+
+    duck.classList.add("duckDeathFall");
+    duck.classList.add("duckDeathFallAnimation");
+
+    duck.addEventListener("animationend", () => {
+        console.log("end death");
+        duck.removeAttribute("class");
+    });
+
+}
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
-
 }
 
 function getRandomIntInclusive(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
   }
-
-
-
-
-
 
 
 // SCORE
@@ -501,19 +536,21 @@ function displayScore(){
     score.innerHTML = `${hitDucks * 100}`;
 }
 
-
-
 // ROUNDS
 
 function updateRound() {
 
    let rounds = document.querySelector(".roundNumber");
+   const nextRoundSound = new Audio("audio/nextRound.mp3");
 
    switch(hitDucks) {
     case 6:
         round++;
         rounds.innerHTML = `${round}`;
         document.body.style.backgroundColor = "pink";
+        setTimeout(() => {
+           nextRoundSound.play();
+        }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
@@ -521,6 +558,9 @@ function updateRound() {
         round++;
         rounds.innerHTML = `${round}`;
         document.body.style.backgroundColor = "orange";
+        setTimeout(() => {
+            nextRoundSound.play();
+         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
@@ -528,6 +568,9 @@ function updateRound() {
         round++;
         rounds.innerHTML = `${round}`;
         document.body.style.backgroundColor = "lightgreen";
+        setTimeout(() => {
+            nextRoundSound.play();
+         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
@@ -535,6 +578,9 @@ function updateRound() {
         round++;
         rounds.innerHTML = `${round}`;
         document.body.style.backgroundColor = "lightblue";
+        setTimeout(() => {
+            nextRoundSound.play();
+         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
@@ -542,11 +588,14 @@ function updateRound() {
         round++;
         rounds.innerHTML = `${round}`;
         document.body.style.backgroundColor = "lightyellow";
+        setTimeout(() => {
+            nextRoundSound.play();
+         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
     case 36:
-            displayWinner(score);
+        displayWinner(score);
         break;
     default:
         break;
@@ -554,24 +603,20 @@ function updateRound() {
 }
 
 
+// WINNER
+
 const Winner = document.getElementById("winner-wrapper");
 function displayWinner(score) {
 
-     youWin = true;
+    youWon = true;
 
-     let scoreElement = document.getElementById("winnerScore");
-
+    let scoreElement = document.getElementById("winnerScore");
     
     const gameOverAudio = new Audio("audio/winner-sound.wav");
     gameOverAudio.play();
-   
 
      scoreElement.innerHTML = `${hitDucks * 100}`;
      Winner.style.display = "flex";
-
-    
- 
-
 }
 
 
