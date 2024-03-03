@@ -384,20 +384,18 @@ align-items: center;
 @keyframes flyBackMove {
   from{
     transform: translate(var(--backDuckOX) ,var(--backDuckOY)) scale(3) scaleX(-1);
-    /* transform: translate(calc(100vw - 34px) ,0%) scale(3) scaleX(-1); */
   }
   to{
     transform: translate(var(--backDuckX), var(--backDuckY)) scale(3) scaleX(-1);
-    /* transform: translate(0%,0%) scale(3) scaleX(-1); */
   }
   
 }
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
-/* ************         DUCK VERTICAL FLY       ************************ */
+/* ************         DUCK VERTICAL FLY UP      ************************ */
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 
-.duckFlyUp {
+.duckFlyUp, .duckFlyDown {
   position: absolute;
   background: url('images/duckhunt_various_sheet.png');
 	width: 24px;
@@ -411,42 +409,66 @@ align-items: center;
 
 .duckFlyUpAnimation {
   animation: 
-          flyUp 2s linear, 
-          upFlyDuck 0.25s steps(1) infinite;
-  animation-direction: alternate;
+    flyUp 2s linear, 
+    upFlyDuck 0.25s steps(1) infinite;
+  animation-direction: normal;
 }
 
 @keyframes upFlyDuck {
-
+  
   0% {
-    background-position: -82px -198px;
-    width: 30px;
-	  height: 30px;
+    background-position: -5px -197px;
+    width: 24px;
+    height: 31px;
   }
-
+  
   50% {
     background-position: -41px -197px;
     width: 32px;
 	  height: 31px;
   }
-
+  
   100% {
-    background-position: -5px -197px;
-    width: 24px;
-	  height: 31px;
+    background-position: -82px -198px;
+    width: 30px;
+    height: 30px;
   }
   
 }
 
 @keyframes flyUp {
   from{
-    transform: translateY(var(--upDuckYO)) scale(3);
+    transform: translate(var(--upDuckOX) ,var(--upDuckOY)) scale(3);
   }
   to{
-    transform: translateY(var(--upDuckY)) scale(3);
+    transform: translate(var(--upDuckX), var(--upDuckY)) scale(3);
   }
   
 }
+
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+/* ************         DUCK VERTICAL FLY DOWN      ********************** */
+/* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+
+.duckFlyDownAnimation {
+  animation:
+    flyDown 2s linear,
+    upFlyDuck 0.25s steps(1) infinite;
+  animation-direction: normal ;
+}
+
+
+
+@keyframes flyDown {
+  from{
+    transform: translate(var(--downDuckOX) ,var(--downDuckOY)) scale(3) scaleY(-1);
+  }
+  to{
+    transform: translate(var(--downDuckX), var(--downDuckY)) scale(3) scaleY(-1);
+  }
+}
+
+
 
 /* +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
 /* **************         DUCK DIAGONAL FLY       ************************ */
@@ -498,7 +520,7 @@ align-items: center;
   }
   to{
     transform: translate(var(--rUpDuckX), var(--rUpDuckY)) scale(3);
-    /* transform: translate(50vw, 0%) scale(3); */
+    
   }
   
 }
@@ -631,21 +653,21 @@ align-items: center;
 
 .duckDeathFallAnimation {
   animation: 
-  deathMove 2s linear infinite;
+  deathMove 2s linear;
   animation-direction: normal;
 }
 
 @keyframes deathMove {
   from{
     transform: translate(var(--deathMoveXo), var(--deathMoveYo)) scale(3);
-    /* transform: translate(20vw, 15%) scale(3); */
   }
   to{
     transform: translate(var(--deathMoveX), var(--deathMoveY)) scale(3);
-    /* transform: translate(20vw, 35vw) scale(3); */
   }
   
 }
+
+
 
 .duckHeadShot {
   position: absolute;

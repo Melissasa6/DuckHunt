@@ -33,7 +33,12 @@ function startGame() {
     disableShooting();    
     dogMove();
     setTimeout(() => {displayStartingTimer(3);}, 6000);
-    showBullets();  
+    showBullets();
+    setTimeout(() => {
+        releaseDucks();
+        releaseDucks();
+    }, 12000);  
+    
 }
 
 
@@ -61,28 +66,28 @@ document.addEventListener('click', (event)=> {
 
 
 
-duck?.addEventListener('click', function() {
-    console.log("HIT");
-    hitDucks++;
-    ducksPaint++;
-    hitDucksDisplay();
-    displayScore();
+// duck?.addEventListener('click', function() {
+//     console.log("HIT");
+//     hitDucks++;
+//     ducksPaint++;
+//     hitDucksDisplay();
+//     displayScore();
     
-    resetBulletCounter();
+//     resetBulletCounter();
 
-    setTimeout(() => {
-        const duckFalling = new Audio("audio/duck-falling.mp3");
-        duckFalling.play();
-    }, 500);
+//     setTimeout(() => {
+//         const duckFalling = new Audio("audio/duck-falling.mp3");
+//         duckFalling.play();
+//     }, 500);
 
-    dogGotDuck();
+//     dogGotDuck();
 
-    setTimeout(() => {
-        updateRound();
-    }, 500);
+//     setTimeout(() => {
+//         updateRound();
+//     }, 500);
 
     
-});
+// });
 
 
 function hideBullets() {
@@ -268,22 +273,9 @@ function hitDucksDisplay() {
 // =================   DUCK FLY   ================================================
 // ===============================================================================
 
-function play() {
-    let xO = getRandomInt(100);
-    let duck1 = createDuck(xO, 35);
-    
-    duck1.addEventListener("animationend", () => {
-        
-        console.log("animation end")
-        
-        xO = duck1.positionX;
-        yO = duck1.positionY;
-
-        // Remove all the classes from div
-        duck1.removeAttribute('class');
-          
-    });
-
+function releaseDucks() {
+    let xO = getRandomInt(66);
+    createDuck(xO, 35);
 }
 
 const createDuck = (xO, yO) => {
@@ -298,10 +290,8 @@ const createDuck = (xO, yO) => {
     }
 
     // DEFINE RANDOM DESTINATION 
-    let posX = getRandomInt(100);
-    console.log(posX);
+    let posX = getRandomInt(66);
     let posY = getRandomInt(35);
-    console.log(posY);
 
     // CREATE DIV DUCK AND ASSERT POSITIONS
     let root = document.querySelector(':root');
@@ -316,15 +306,61 @@ const createDuck = (xO, yO) => {
     defineMovement(xO, yO, posX, posY, duck);
     root.append(duck);
 
-    // DETECT ANIMATION AND AND DEFINE NEW MOVE
+    // DETECT ANIMATION AND DEFINE NEW MOVE
     
+    duck.addEventListener("animationend", () => {
+        
+        console.log("ANIMATION END");
+        
+        xO = duck.positionX;
+        yO = duck.positionY;
+        
+        // Remove all the classes from div
+        duck.removeAttribute('class');
+        
+        duck = createDuck(xO,yO);
+
+    });
+
+    duck.addEventListener('click', function() {
+
+        xO = duck.positionX;
+        yO = duck.positionY;
+
+        duck.removeAttribute("class");
+        createDeathDuck(duck, xO, yO);
+        console.log("HIT");
+        hitDucks++;
+        ducksPaint++;
+        hitDucksDisplay();
+        displayScore();
+        
+        resetBulletCounter();
     
-    return duck;
+        setTimeout(() => {
+            const duckFalling = new Audio("audio/duck-falling.mp3");
+            duckFalling.play();
+
+        }, 500);
+    
+        dogGotDuck();
+    
+        setTimeout(() => {
+            updateRound();
+        }, 500);
+
+        createDuck(getRandomInt(66), 35);
+        
+    });
+
 }
+
+let movecount = 0;
 
 function defineMovement(xO, yO, posX, posY, duck) {
 
-    console.log("define move");
+    movecount++;
+    console.log("define move" + movecount);
     if (xO === posX) {
         if (yO === posY) {
             console.log("generate new posY");
@@ -333,10 +369,12 @@ function defineMovement(xO, yO, posX, posY, duck) {
         // ------ FLY DOWN ------
         if (yO > posY) {
             console.log("FLY DOWN");
-        
-            
-            // SET PROPERTIES POSITION
 
+            duck.style.setProperty('--downDuckOX', `${xO}vw`);
+            duck.style.setProperty('--downDuckOY', `${yO}vw`);
+            duck.style.setProperty('--downDuckX', `${posX}vw`);
+            duck.style.setProperty('--downDuckY', `${posY}vw`);
+        
             duck.classList.add("duckFlyUp");
             duck.classList.add("duckFlyUpAnimation");
 
@@ -346,7 +384,10 @@ function defineMovement(xO, yO, posX, posY, duck) {
         if (yO < posY) {
 
             console.log("FLY UP");
-            // SET PROPERTIES POSITION
+            duck.style.setProperty('--upDuckOX', `${xO}vw`);
+            duck.style.setProperty('--upDuckOY', `${yO}vw`);
+            duck.style.setProperty('--upDuckX', `${posX}vw`);
+            duck.style.setProperty('--upDuckY', `${posY}vw`);
 
             duck.classList.add("duckFlyUp");
             duck.classList.add("duckFlyUpAnimation");
@@ -438,10 +479,40 @@ function defineMovement(xO, yO, posX, posY, duck) {
 }
 
 
+const createDeathDuck = (duck, xO, yO) => {
+
+    let root = document.querySelector(':root');
+    let deathDuck = document.createElement("div");
+
+    deathDuck.positionXO = xO;
+    deathDuck.positionYO = yO;
+    deathDuck.positionX = xO;
+    deathDuck.positionY = 35;
+
+    duckDeathMove(xO, yO, deathDuck)
+    root.append(deathDuck);
+
+}
+
+const duckDeathMove = (xO, yO, duck) => {
+
+    duck.style.setProperty('--deathMoveXo', `${xO}vw`);
+    duck.style.setProperty('--deathMoveYo', `${yO}vw`);
+    duck.style.setProperty('--deathMoveX', `${xO}vw`);
+    duck.style.setProperty('--deathMoveY', `${35}vw`);
+
+    duck.classList.add("duckDeathFall");
+    duck.classList.add("duckDeathFallAnimation");
+
+    duck.addEventListener("animationend", () => {
+        console.log("end death");
+        duck.removeAttribute("class");
+    });
+
+}
 
 function getRandomInt(max) {
     return Math.floor(Math.random() * max);
-
 }
 
 function getRandomIntInclusive(min, max) {
@@ -450,20 +521,12 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
   }
 
-
-
-
-
-
-
 // SCORE
 
 function displayScore(){
     let score = document.querySelector(".score");
     score.innerHTML = `${hitDucks * 100}`;
 }
-
-
 
 // ROUNDS
 
@@ -540,18 +603,12 @@ function displayWinner(score) {
     youWon = true;
 
     let scoreElement = document.getElementById("winnerScore");
-
     
     const gameOverAudio = new Audio("audio/winner-sound.wav");
     gameOverAudio.play();
-   
 
      scoreElement.innerHTML = `${hitDucks * 100}`;
      Winner.style.display = "flex";
-
-    
- 
-
 }
 
 
