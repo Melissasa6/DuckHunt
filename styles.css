@@ -438,12 +438,10 @@ align-items: center;
 
 @keyframes flyUp {
   from{
-    /* transform: translate(var(--upDuckOX) ,var(--upDuckOY)) scale(3); */
-    transform: translate(30vw ,35vw) scale(3);
+    transform: translate(var(--upDuckOX) ,var(--upDuckOY)) scale(3);
   }
   to{
-    transform: translate(30vw, 0) scale(3);
-    /* transform: translate(var(--upDuckX), var(--upDuckY)) scale(3); */
+    transform: translate(var(--upDuckX), var(--upDuckY)) scale(3);
   }
   
 }
@@ -655,21 +653,21 @@ align-items: center;
 
 .duckDeathFallAnimation {
   animation: 
-  deathMove 2s linear infinite;
+  deathMove 2s linear;
   animation-direction: normal;
 }
 
 @keyframes deathMove {
   from{
     transform: translate(var(--deathMoveXo), var(--deathMoveYo)) scale(3);
-    /* transform: translate(20vw, 15%) scale(3); */
   }
   to{
     transform: translate(var(--deathMoveX), var(--deathMoveY)) scale(3);
-    /* transform: translate(20vw, 35vw) scale(3); */
   }
   
 }
+
+
 
 .duckHeadShot {
   position: absolute;
