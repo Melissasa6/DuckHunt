@@ -70,20 +70,20 @@ body, .field-container{
   z-index: 140;
 }
 
-.title {
-  font-family: duckHuntFont;
-  font-size: 700%;
-  padding: 0.1em;
-  text-align: center;
+.title img{
+  width: 85%;
+  height: auto;
 }
 
 #play-button {
-  width: 80%;
-  height: 60%;
+  width: 90%;
+  height: 70%;
   align-self: center;
-  margin-left: 10%;
+  justify-content: center;
   transition: filter 0.3s ease-in-out;
   z-index: 250;
+  align-items: center;
+  margin-top: -25%;
 }
 
 
