@@ -57,7 +57,7 @@ body, .field-container{
 
 .wrapper {
   width: 32%;
-  height: 65%;
+  height: 70%;
   border: 0.4em solid yellow;
   border-radius: 0.6em;
   position: fixed;
@@ -71,19 +71,27 @@ body, .field-container{
 }
 
 .title img{
-  width: 85%;
+  width: 80%;
   height: auto;
 }
 
 #play-button {
-  width: 90%;
-  height: 70%;
+  width: 60%;
+  height: 0%;
   align-self: center;
   justify-content: center;
   transition: filter 0.3s ease-in-out;
   z-index: 250;
   align-items: center;
-  margin-top: -25%;
+  margin-top: -30%;
+}
+
+.dogGotOne img {
+  width: 40%;
+  height: auto;
+  margin-top: 5%;
+  z-index: 200;
+
 }
 
 
