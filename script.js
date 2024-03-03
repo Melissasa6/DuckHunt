@@ -313,8 +313,13 @@ const createDuck = (xO, yO) => {
 
     duck.addEventListener('click', function() {
 
-        xO = duck.positionX;
-        yO = duck.positionY;
+        // xO = duck.positionX;
+        // yO = duck.positionY;
+
+        const rect = duck.getBoundingClientRect();
+        const xO = (rect.left + ((rect.right - rect.left) / 2)) / window.innerWidth * 100 - 6;
+        const yO = (rect.bottom + ((rect.top - rect.bottom) / 2)) / window.innerWidth * 100;
+
 
         duck.removeAttribute("class");
         createDeathDuck(duck, xO, yO);
@@ -518,7 +523,7 @@ function getRandomInt(max) {
 function getRandomIntInclusive(min, max) {
     const minCeiled = Math.ceil(min);
     const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
   }
 
 
