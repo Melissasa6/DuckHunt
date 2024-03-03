@@ -375,8 +375,8 @@ function defineMovement(xO, yO, posX, posY, duck) {
             duck.style.setProperty('--downDuckX', `${posX}vw`);
             duck.style.setProperty('--downDuckY', `${posY}vw`);
         
-            duck.classList.add("duckFlyUp");
-            duck.classList.add("duckFlyUpAnimation");
+            duck.classList.add("duckFlyDown");
+            duck.classList.add("duckFlyDownAnimation");
 
         }
 
@@ -489,8 +489,19 @@ const createDeathDuck = (duck, xO, yO) => {
     deathDuck.positionX = xO;
     deathDuck.positionY = 35;
 
+    
+   // duckHeadShot(xO, yO, deathDuck);
     duckDeathMove(xO, yO, deathDuck)
     root.append(deathDuck);
+
+}
+
+const duckHeadShot = (x, y, duck) => {
+
+    duck.style.setProperty('--positionDeathY', `${y}vw`);
+    duck.style.setProperty('--positionDeathX', `${x}vw`);
+
+    duck.classList.add("duckHeadShot");
 
 }
 
