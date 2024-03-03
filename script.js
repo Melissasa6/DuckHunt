@@ -37,7 +37,7 @@ function startGame() {
     setTimeout(() => {
         releaseDucks();
         releaseDucks();
-    }, 12000);  
+    }, 10000);  
     
 }
 
@@ -212,17 +212,6 @@ function displayStartingTimer(seconds){
     };
     updateTimer();
 }
-
-// document.addEventListener('click', ()=> {
-//          bullet.play();
-//      if (bulletCounter ===2) {
-//          bullet1Cover.style.display = "inline";
-//      } else if ( bulletCounter ===1) {
-//          bullet1Cover.style.display, bullet2Cover.style.display = "inline";
-//      }else if ( bulletCounter ===0) {
-//          bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
-//      }
-//      });
 
 
 
@@ -520,6 +509,7 @@ function getRandomIntInclusive(min, max) {
     const maxFloored = Math.floor(max);
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); // The maximum is inclusive and the minimum is inclusive
   }
+
 
 // SCORE
 
