@@ -208,16 +208,16 @@ function displayStartingTimer(seconds){
     updateTimer();
 }
 
-document.addEventListener('click', ()=> {
-         bullet.play();
-     if (bulletCounter ===2) {
-         bullet1Cover.style.display = "inline";
-     } else if ( bulletCounter ===1) {
-         bullet1Cover.style.display, bullet2Cover.style.display = "inline";
-     }else if ( bulletCounter ===0) {
-         bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
-     }
-     });
+// document.addEventListener('click', ()=> {
+//          bullet.play();
+//      if (bulletCounter ===2) {
+//          bullet1Cover.style.display = "inline";
+//      } else if ( bulletCounter ===1) {
+//          bullet1Cover.style.display, bullet2Cover.style.display = "inline";
+//      }else if ( bulletCounter ===0) {
+//          bullet1Cover.style.display, bullet2Cover.style.display, bullet3Cover.style.display = "inline";
+//      }
+//      });
 
 
 
@@ -524,7 +524,7 @@ function updateRound() {
         hitDucksDisplay();
         break;
     case 36:
-            displayWinner(score);
+        displayWinner(score);
         break;
     default:
         break;
