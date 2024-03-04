@@ -219,8 +219,6 @@ const GameOver = document.getElementById("game-over-wrapper");
 function displayGameOver(score) {
     isGameOver = true;
 
-   
-
     let scoreElement = document.getElementById("score");  
 
     setTimeout(() => {
@@ -325,6 +323,8 @@ const createDuck = (xO, yO) => {
 
         duck.removeAttribute("class");
         createDeathDuck(duck, xO, yO);
+        const bullet = new Audio("audio/gun-shot.mp3");
+        bullet.play();
         console.log("HIT");
         hitDucks++;
         ducksPaint++;
