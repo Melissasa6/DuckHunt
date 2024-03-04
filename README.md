@@ -1,5 +1,7 @@
 <h1 align="center"> DUCK HUNT </h1>
 
+![Duck Hunt Game](https://github.com/Melissasa6/DuckHunt/assets/152307336/be9d9666-2690-446b-93ab-1fa57e9769a4)
+
 Welcome to Duck Hunt, a simple game inspired by Nintendo's classic arcade-style game, DUCK HUNT. Built using Javascript, HTML and CSS.
 DuckHunt brings back nostalgic memories while providing an enjoyable gaming experience.
 The game is designed to be played on web browsers.
