@@ -147,6 +147,29 @@ body,
   align-items: center;
 }
 
+.round-wrapper {
+  display: none;
+  width: 60%;
+  height: 65%;
+  flex-direction: column;
+  position: fixed;
+  z-index: 145;
+  align-self: center;
+  align-items: center;
+}
+
+.tittle-round {
+  font-family: duckHuntFont;
+  font-size: 500%;
+  text-align: center;
+  padding: 0.1em;
+  color: orangered;
+}
+
+.tittle-round {
+  font-size: 150%;
+}
+
 
 
 .title-winner {
