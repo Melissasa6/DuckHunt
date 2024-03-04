@@ -511,10 +511,12 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
   }
 
+
+
 function deleteAllDucks() {
         const duckElements = document.querySelector('.duck');
         while (duckElements.length > 0) {
-            duckElements[0].remove();
+            duckElements[0].removeAttribute('class');
         }
     }
 
