@@ -3,8 +3,7 @@
 
     const mainFieldContainer = document.getElementById("main-field-container");
     
-    let dog= document.getElementById("dog");
-    let ducks = [];
+    let dog = document.getElementById("dog");
     
     const bullet1Cover = document.querySelector(".bullet1-cover");
     const bullet2Cover = document.querySelector(".bullet2-cover");
@@ -19,6 +18,7 @@
     let ducksPaint = 0;
 
     let round = 1;
+    let changeRound = false;
 
 
     window.addEventListener("load", () => {  
@@ -104,7 +104,7 @@ function hideBullets() {
 
 
 function resetBulletCounter () {
-    bulletCounter = 4;
+    bulletCounter = 3;
     bullet1Cover.style.display = "none";
     bullet2Cover.style.display = "none";
     bullet3Cover.style.display = "none";
@@ -227,7 +227,9 @@ function displayGameOver(score) {
     }, 1000);
  
     scoreElement.innerHTML = `${hitDucks * 100}`;
-    GameOver.style.display = "flex";
+    GameOver.style.display = "flex"; 
+    
+    deleteAllDucks();
 }
 
 
@@ -308,7 +310,8 @@ const createDuck = (xO, yO) => {
 
     });
 
-    duck.addEventListener('click', function() {
+    duck.addEventListener('click', function(event) {
+        event.stopPropagation();
 
         // xO = duck.positionX;
         // yO = duck.positionY;
@@ -320,6 +323,8 @@ const createDuck = (xO, yO) => {
 
         duck.removeAttribute("class");
         createDeathDuck(duck, xO, yO);
+        const bullet = new Audio("audio/gun-shot.mp3");
+        bullet.play();
         console.log("HIT");
         hitDucks++;
         ducksPaint++;
@@ -334,14 +339,17 @@ const createDuck = (xO, yO) => {
 
         }, 500);
     
-        dogGotDuck();
+        setTimeout(() => {
+            dogGotDuck();
+        }, 1200);
     
         setTimeout(() => {
             updateRound();
         }, 500);
 
+        setTimeout(() => {
         createDuck(getRandomInt(66), 35);
-        
+        }, 2000);
     });
 
 }
@@ -525,6 +533,14 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
   }
 
+function deleteAllDucks() {
+        const duckElements = document.querySelector('.duck');
+        while (duckElements.length > 0) {
+            duckElements[0].remove();
+        }
+    }
+
+
 
 // SCORE
 
@@ -533,61 +549,52 @@ function displayScore(){
     score.innerHTML = `${hitDucks * 100}`;
 }
 
+
+
 // ROUNDS
 
 function updateRound() {
 
    let rounds = document.querySelector(".roundNumber");
-   const nextRoundSound = new Audio("audio/nextRound.mp3");
 
    switch(hitDucks) {
     case 6:
         round++;
         rounds.innerHTML = `${round}`;
+        displayRoundNumber(round, score);
         document.body.style.backgroundColor = "pink";
-        setTimeout(() => {
-           nextRoundSound.play();
-        }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
     case 12:
         round++;
         rounds.innerHTML = `${round}`;
+        displayRoundNumber(round, score);
         document.body.style.backgroundColor = "orange";
-        setTimeout(() => {
-            nextRoundSound.play();
-         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
     case 18:
         round++;
         rounds.innerHTML = `${round}`;
+        displayRoundNumber(round, score);
         document.body.style.backgroundColor = "lightgreen";
-        setTimeout(() => {
-            nextRoundSound.play();
-         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
     case 24:
         round++;
         rounds.innerHTML = `${round}`;
+        displayRoundNumber(round, score);
         document.body.style.backgroundColor = "lightblue";
-        setTimeout(() => {
-            nextRoundSound.play();
-         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
     case 30:
         round++;
         rounds.innerHTML = `${round}`;
+        displayRoundNumber(round, score);
         document.body.style.backgroundColor = "lightyellow";
-        setTimeout(() => {
-            nextRoundSound.play();
-         }, 1500);
         ducksPaint = 0;
         hitDucksDisplay();
         break;
@@ -600,6 +607,37 @@ function updateRound() {
 }
 
 
+const RoundNumber = document.getElementById("round-wrapper");
+function displayRoundNumber(round, score){
+
+
+    setTimeout(() => {
+    const nextRoundSound = new Audio("audio/nextRound.mp3");
+    nextRoundSound.play();
+    }, 2000);
+
+
+    // Round
+    changeRound = true;
+
+    let roundElement = document.getElementById("roundNumberWrapper");
+    roundElement.innerHTML = `${round}`;
+    
+    // Score
+    let scoreElement = document.getElementById("roundScore");
+
+    scoreElement.innerHTML = `${hitDucks * 100}`;
+
+    // Display
+    RoundNumber.style.display = "flex"; 
+
+    setTimeout(() => {
+        RoundNumber.style.display = "none";
+    }, 5000); 
+
+}
+
+
 // WINNER
 
 const Winner = document.getElementById("winner-wrapper");
@@ -609,8 +647,10 @@ function displayWinner(score) {
 
     let scoreElement = document.getElementById("winnerScore");
     
-    const gameOverAudio = new Audio("audio/winner-sound.wav");
-    gameOverAudio.play();
+    const winnerAudio = new Audio("audio/winner-sound.wav");
+    setTimeout(() => {
+        winnerAudio.play();
+    }, 2000);
 
      scoreElement.innerHTML = `${hitDucks * 100}`;
      Winner.style.display = "flex";
