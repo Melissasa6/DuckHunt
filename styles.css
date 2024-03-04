@@ -74,6 +74,7 @@ body,
 .title img {
   width: 80%;
   height: auto;
+  padding: 2%;
 }
 
 #play-button {
