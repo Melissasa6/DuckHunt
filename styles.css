@@ -74,6 +74,7 @@ body,
 .title img {
   width: 80%;
   height: auto;
+  padding: 2%;
 }
 
 #play-button {
@@ -144,6 +145,29 @@ body,
   z-index: 145;
   align-self: center;
   align-items: center;
+}
+
+.round-wrapper {
+  display: none;
+  width: 60%;
+  height: 65%;
+  flex-direction: column;
+  position: fixed;
+  z-index: 145;
+  align-self: center;
+  align-items: center;
+}
+
+.tittle-round {
+  font-family: duckHuntFont;
+  font-size: 500%;
+  text-align: center;
+  padding: 0.1em;
+  color: black;
+}
+
+.tittle-round {
+  font-size: 150%;
 }
 
 
