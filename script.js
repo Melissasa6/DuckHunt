@@ -3,8 +3,7 @@
 
     const mainFieldContainer = document.getElementById("main-field-container");
     
-    let dog= document.getElementById("dog");
-    let ducks = [];
+    let dog = document.getElementById("dog");
     
     const bullet1Cover = document.querySelector(".bullet1-cover");
     const bullet2Cover = document.querySelector(".bullet2-cover");
@@ -219,6 +218,8 @@ const GameOver = document.getElementById("game-over-wrapper");
 function displayGameOver(score) {
     isGameOver = true;
 
+   
+
     let scoreElement = document.getElementById("score");  
 
     setTimeout(() => {
@@ -227,7 +228,9 @@ function displayGameOver(score) {
     }, 1000);
  
     scoreElement.innerHTML = `${hitDucks * 100}`;
-    GameOver.style.display = "flex";
+    GameOver.style.display = "flex"; 
+    
+    deleteAllDucks();
 }
 
 
@@ -308,7 +311,8 @@ const createDuck = (xO, yO) => {
 
     });
 
-    duck.addEventListener('click', function() {
+    duck.addEventListener('click', function(event) {
+        event.stopPropagation();
 
         // xO = duck.positionX;
         // yO = duck.positionY;
@@ -334,14 +338,17 @@ const createDuck = (xO, yO) => {
 
         }, 500);
     
-        dogGotDuck();
+        setTimeout(() => {
+            dogGotDuck();
+        }, 1200);
     
         setTimeout(() => {
             updateRound();
         }, 500);
 
+        setTimeout(() => {
         createDuck(getRandomInt(66), 35);
-        
+        }, 2000);
     });
 
 }
@@ -525,6 +532,13 @@ function getRandomIntInclusive(min, max) {
     return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled); 
   }
 
+function deleteAllDucks() {
+        const duckElements = document.querySelector('.duck');
+        while (duckElements.length > 0) {
+            duckElements[0].remove();
+        }
+    }
+
 
 // SCORE
 
@@ -544,7 +558,9 @@ function updateRound() {
     case 6:
         round++;
         rounds.innerHTML = `${round}`;
+        setTimeout(() => {
         document.body.style.backgroundColor = "pink";
+        }, 1500);
         setTimeout(() => {
            nextRoundSound.play();
         }, 1500);
@@ -554,7 +570,9 @@ function updateRound() {
     case 12:
         round++;
         rounds.innerHTML = `${round}`;
+        setTimeout(() => {
         document.body.style.backgroundColor = "orange";
+        }, 1500);
         setTimeout(() => {
             nextRoundSound.play();
          }, 1500);
@@ -564,7 +582,9 @@ function updateRound() {
     case 18:
         round++;
         rounds.innerHTML = `${round}`;
+        setTimeout(() => {
         document.body.style.backgroundColor = "lightgreen";
+        }, 1500);
         setTimeout(() => {
             nextRoundSound.play();
          }, 1500);
@@ -574,7 +594,9 @@ function updateRound() {
     case 24:
         round++;
         rounds.innerHTML = `${round}`;
+        setTimeout(() => {
         document.body.style.backgroundColor = "lightblue";
+        }, 1500);
         setTimeout(() => {
             nextRoundSound.play();
          }, 1500);
@@ -584,7 +606,9 @@ function updateRound() {
     case 30:
         round++;
         rounds.innerHTML = `${round}`;
+        setTimeout(() => {
         document.body.style.backgroundColor = "lightyellow";
+        }, 1500);
         setTimeout(() => {
             nextRoundSound.play();
          }, 1500);
