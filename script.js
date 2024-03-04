@@ -323,8 +323,10 @@ const createDuck = (xO, yO) => {
 
         duck.removeAttribute("class");
         createDeathDuck(duck, xO, yO);
+
         const bullet = new Audio("audio/gun-shot.mp3");
         bullet.play();
+        
         console.log("HIT");
         hitDucks++;
         ducksPaint++;
