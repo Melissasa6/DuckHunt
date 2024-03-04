@@ -20,6 +20,12 @@
     let round = 1;
     let changeRound = false;
 
+    const Winner = document.getElementById("winner-wrapper");
+    const GameOver = document.getElementById("game-over-wrapper");
+    const RoundNumber = document.getElementById("round-wrapper");
+
+    let gameStartingEndTimer;
+
 
     window.addEventListener("load", () => {  
     startGame();
@@ -154,7 +160,6 @@ function dogGotDuck(){
 
 // STARTING TIMER
 
-let gameStartingEndTimer;
 
 function displayStartingTimer(seconds){
 
@@ -190,7 +195,6 @@ function displayStartingTimer(seconds){
 
 // GAME OVER
 
-const GameOver = document.getElementById("game-over-wrapper");
 
 function displayGameOver(score) {
     isGameOver = true;
@@ -528,63 +532,50 @@ function displayScore(){
 
 // ROUNDS
 
+
 function updateRound() {
+    
+    let rounds = document.querySelector(".roundNumber");
+    switch (hitDucks) {
+        case 6:
+        case 12:
+        case 18:
+        case 24:
+        case 30:
+            round++;
+            rounds.innerHTML = `${round}`;
+            displayRoundNumber(round, score);
+            document.body.style.backgroundColor = getColorForRound(hitDucks);
+            ducksPaint = 0;
+            hitDucksDisplay();
+            break;
+        case 36:
+            displayWinner(score);
+            break;
+        default:
+            break;
+        }
+}
 
-   let rounds = document.querySelector(".roundNumber");
-
-   switch(hitDucks) {
+function getColorForRound(hitDucks) {
+switch (hitDucks) {
     case 6:
-        round++;
-        rounds.innerHTML = `${round}`;
-        displayRoundNumber(round, score);
-        document.body.style.backgroundColor = "pink";
-        ducksPaint = 0;
-        hitDucksDisplay();
-        break;
+        return "pink";
     case 12:
-        round++;
-        rounds.innerHTML = `${round}`;
-        displayRoundNumber(round, score);
-        document.body.style.backgroundColor = "orange";
-        ducksPaint = 0;
-        hitDucksDisplay();
-        break;
+        return "orange";
     case 18:
-        round++;
-        rounds.innerHTML = `${round}`;
-        displayRoundNumber(round, score);
-        document.body.style.backgroundColor = "lightgreen";
-        ducksPaint = 0;
-        hitDucksDisplay();
-        break;
+        return "lightgreen";
     case 24:
-        round++;
-        rounds.innerHTML = `${round}`;
-        displayRoundNumber(round, score);
-        document.body.style.backgroundColor = "lightblue";
-        ducksPaint = 0;
-        hitDucksDisplay();
-        break;
+        return "lightblue";
     case 30:
-        round++;
-        rounds.innerHTML = `${round}`;
-        displayRoundNumber(round, score);
-        document.body.style.backgroundColor = "lightyellow";
-        ducksPaint = 0;
-        hitDucksDisplay();
-        break;
-    case 36:
-        displayWinner(score);
-        break;
+        return "lightyellow";
     default:
-        break;
+        return "white"; 
 }
 }
 
 
-const RoundNumber = document.getElementById("round-wrapper");
 function displayRoundNumber(round, score){
-
 
     setTimeout(() => {
     const nextRoundSound = new Audio("audio/nextRound.mp3");
@@ -594,18 +585,15 @@ function displayRoundNumber(round, score){
 
     // Round
     changeRound = true;
-
     let roundElement = document.getElementById("roundNumberWrapper");
     roundElement.innerHTML = `${round}`;
     
     // Score
     let scoreElement = document.getElementById("roundScore");
-
     scoreElement.innerHTML = `${hitDucks * 100}`;
 
     // Display
     RoundNumber.style.display = "flex"; 
-
     setTimeout(() => {
         RoundNumber.style.display = "none";
     }, 5000); 
@@ -615,7 +603,6 @@ function displayRoundNumber(round, score){
 
 // WINNER
 
-const Winner = document.getElementById("winner-wrapper");
 function displayWinner(score) {
 
     youWon = true;
