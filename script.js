@@ -10,7 +10,6 @@
     const bullet2Cover = document.querySelector(".bullet2-cover");
     const bullet3Cover = document.querySelector(".bullet3-cover");
 
-
     let bulletCounter = 3;
 
     let isGameOver = false;
@@ -20,7 +19,6 @@
     let ducksPaint = 0;
 
     let round = 1;
-    const maxRound = 6;
 
 
     window.addEventListener("load", () => {  
@@ -37,8 +35,7 @@ function startGame() {
     setTimeout(() => {
         releaseDucks();
         releaseDucks();
-    }, 10000);  
-    
+    }, 10000);    
 }
 
 
@@ -170,6 +167,7 @@ function dogLaugh(){
     setTimeout(() => {dogLaugh.classList.remove("dogLaughAnimate")}, 3000);
 }
 
+
 function dogGotDuck(){
     let dogGotDuck= document.getElementById("dogGotDuckContainer");
     dogGotDuck.classList.add("dogGotDuckAnimate");
@@ -214,7 +212,6 @@ function displayStartingTimer(seconds){
 }
 
 
-
 // GAME OVER
 
 const GameOver = document.getElementById("game-over-wrapper");
@@ -222,7 +219,7 @@ const GameOver = document.getElementById("game-over-wrapper");
 function displayGameOver(score) {
     isGameOver = true;
 
-    let scoreElement = document.getElementById("score");
+    let scoreElement = document.getElementById("score");  
 
     setTimeout(() => {
         const gameOverAudio = new Audio("audio/gameOver.mp3");
