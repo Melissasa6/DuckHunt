@@ -513,12 +513,7 @@ function getRandomIntInclusive(min, max) {
 
 
 
-function deleteAllDucks() {
-        const duckElements = document.querySelector('.duck');
-        while (duckElements.length > 0) {
-            duckElements[0].removeAttribute('class');
-        }
-    }
+
 
 
 

@@ -951,15 +951,15 @@ body,
   }
 
   25% {
-    transform: scale(4) translateY(-38px);
+    transform: scale(4) translateY(-30px);
   }
 
   50% {
-    transform: scale(4) translateY(-38px);
+    transform: scale(4) translateY(-30px);
   }
 
   75% {
-    transform: scale(4) translateY(-38px);
+    transform: scale(4) translateY(-30px);
   }
 
   100% {
