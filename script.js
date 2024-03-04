@@ -63,30 +63,6 @@ document.addEventListener('click', (event)=> {
 
 
 
-// duck?.addEventListener('click', function() {
-//     console.log("HIT");
-//     hitDucks++;
-//     ducksPaint++;
-//     hitDucksDisplay();
-//     displayScore();
-    
-//     resetBulletCounter();
-
-//     setTimeout(() => {
-//         const duckFalling = new Audio("audio/duck-falling.mp3");
-//         duckFalling.play();
-//     }, 500);
-
-//     dogGotDuck();
-
-//     setTimeout(() => {
-//         updateRound();
-//     }, 500);
-
-    
-// });
-
-
 function hideBullets() {
      if (bulletCounter ===2) {
         bullet1Cover.style.display = "inline";
@@ -323,8 +299,10 @@ const createDuck = (xO, yO) => {
 
         duck.removeAttribute("class");
         createDeathDuck(duck, xO, yO);
+
         const bullet = new Audio("audio/gun-shot.mp3");
         bullet.play();
+
         console.log("HIT");
         hitDucks++;
         ducksPaint++;
